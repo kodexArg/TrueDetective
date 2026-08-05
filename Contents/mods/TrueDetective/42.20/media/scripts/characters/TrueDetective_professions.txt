@@ -1,0 +1,19 @@
+module TrueDetective
+{
+
+/* True Detective occupation — Build 42.20
+ * Registry: truedetective:truedetective
+ * getName() / clothing / forage key: truedetective
+ * Cost -6; Aiming+1 Lightfoot+1 Sneak+2
+ */
+character_profession_definition truedetective:truedetective
+{
+    CharacterProfession = truedetective:truedetective,
+    Cost = -6,
+    UIName = UI_prof_truedetective,
+    UIDescription = UI_profdesc_truedetective,
+    IconPathName = profession_detective,
+    XPBoosts = Aiming=1;Lightfoot=1;Sneak=2,
+}
+
+}

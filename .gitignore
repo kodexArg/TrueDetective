@@ -1,0 +1,47 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Secrets & local env
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+*.token
+
+# Local state / vault index
+state/*
+!state/.gitkeep
+.mvmcp/
+
+# Tooling
+node_modules/
+__pycache__/
+.venv/
+dist/
+*.pyc
+
+# Logs
+*.log
+console.txt
+
+# Project Zomboid runtime (if ever dropped into the tree)
+Zomboid/
+**/Saves/
+**/Logs/
+**/caching/
+*.bin
+*.lotheader
+*.lotpack
+
+# Steam / workshop noise
+*.vdf.bak
+workshop_upload_log.txt
+
+# Optional local only
+.claude/
