@@ -1,9 +1,9 @@
 name=True Detective
 id=TrueDetective
-poster=media/shared/DetectiveProfessionIcon.png
-icon=media/textures/profession_detective.png
-description=True Detective: urban foraging specialist with door-room danger intuition and search-mode awareness. Build 42.20.
+poster=poster.png
+icon=icon.png
+description=True Detective — B42.20 hello-world mock (v42.20-0.1). Load folder 42.0.
 url=https://github.com/kodexArg/TrueDetective
 author=kodexArg
-modversion=2.0.0
+modversion=42.20-0.1
 workshopID=3383387174

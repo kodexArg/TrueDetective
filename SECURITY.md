@@ -1,14 +1,6 @@
 # Security
 
-This repository is a **public** Project Zomboid mod + harness docs.
-
-## Never commit
-
-- Steam session cookies, login tokens, or passwords
-- GitHub PATs, bot tokens, API keys
-- Local `~/Zomboid` saves, logs, or `console.txt`
-- `.env` files
-
-## Reporting
-
-Open a GitHub issue on this repo for security concerns about the mod code. Do not paste credentials into issues.
+- Never commit Steam tokens, cookies, passwords, or API keys.
+- Workshop / Steam credentials stay out of this repo.
+- `legacy/` may contain historical paths only — no secrets belong there either.
+- Local vault index `.mvmcp/` is machine-local; do not publish embedding DBs with sensitive notes.
