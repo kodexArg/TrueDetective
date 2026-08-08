@@ -90,28 +90,38 @@ local function startCooldown(player, key)
 end
 
 function DoorSense.shouldInterrupt(player, element)
+    local function trace(reason)
+        print("[TrueDetective] DoorSense gate: " .. reason)
+    end
     if not isDetective(player) then
         return false
     end
-    if ZombRand(100) >= alertChance(player) then
+    local chance = alertChance(player)
+    if ZombRand(100) >= chance then
+        trace("roll failed (chance " .. tostring(chance) .. ")")
         return false
     end
     if isChased(player) then
+        trace("chased")
         return false
     end
     if element:IsOpen() then
+        trace("element already open")
         return false
     end
     if instanceof(element, "IsoDoor") and element:isLocked() then
+        trace("locked")
         return false
     end
     local key = cooldownKey(element)
     if key and isOnCooldown(player, key) then
+        trace("cooldown")
         return false
     end
     local target = RoomScan.farSquare(element, player:getSquare())
     local undetected = RoomScan.undetectedZombies(target)
     if #undetected == 0 then
+        trace("no undetected zombie in room")
         return false
     end
     for _, zombie in ipairs(undetected) do
@@ -120,20 +130,24 @@ function DoorSense.shouldInterrupt(player, element)
     if key then
         startCooldown(player, key)
     end
+    trace("ALERT, zombies: " .. tostring(#undetected))
     player:setHaloNote(Phrases.danger())
     return true
 end
 
 local originalDoorComplete = ISOpenCloseDoor.complete
 function ISOpenCloseDoor:complete()
+    print("[TrueDetective] door complete hook fired")
     if DoorSense.shouldInterrupt(self.character, self.item) then
         return true
     end
     return originalDoorComplete(self)
 end
+print("[TrueDetective] DoorSense hooks installed")
 
 local originalWindowPerform = ISOpenCloseWindow.perform
 function ISOpenCloseWindow:perform()
+    print("[TrueDetective] window perform hook fired")
     if DoorSense.shouldInterrupt(self.character, self.object) then
         ISBaseTimedAction.perform(self)
         return
