@@ -1,37 +1,55 @@
 ---
 title: Architecture
-description: B42.20 hello-world mock layout
+description: True Detective B42.20 mod layout — Contents, 42.0, common; structure law in adr-05
 updated: 2026-08-08
 ---
 
-## Live mod tree
+## Binding law
+
+- Structure: [[adr-05-project-zomboid-mod-structure]] + `docs/resources/pz-mod-structure/`
+- Steam / paths: [[adr-06-steam-configurations]] + `docs/resources/steam-configurations/`
+
+## Live mod tree (project standard)
 
 ```text
 Contents/mods/TrueDetective/
-├── mod.info                 # id=TrueDetective, workshopID, modversion
+├── mod.info                 # id=TrueDetective
 ├── icon.png / poster.png
-└── 42.0/                    # B42 / 42.20 load root
+├── common/                  # B42 shared assets (required presence)
+│   └── media/…
+└── 42.0/                    # primary version root for Build 42.20
     ├── mod.info
+    ├── poster.png / icon.png
     └── media/
-        └── lua/
-            ├── client/TrueDetective/HelloWorld.lua
-            └── shared/Translate/EN/UI_EN.txt
+        ├── registries.lua   # when profession ships
+        ├── lua/
+        │   ├── client/TrueDetective/
+        │   ├── shared/TrueDetective/
+        │   └── server/…     # if needed
+        ├── scripts/…
+        └── textures/…
 ```
+
+Full trees: [[pz-mod-tree]].
 
 ## Runtime
 
-Steam launches native `ProjectZomboid64` → loads enabled mods from `~/Zomboid/mods` and Workshop. Version folder **`42.0`** is selected for Build 42.x clients.
+Steam AppID **108600** → native `ProjectZomboid64` → loads
+`~/Zomboid/mods/TrueDetective` (local) and/or Workshop content.
+Version folder **`42.0`** is this project’s pin for 42.20 stable.
 
-## Hello world
+Install: `scripts/install-local.sh` → real directory (not symlink).
 
-`HelloWorld.lua` registers:
+## Systems (product)
 
-- `Events.OnGameBoot`
-- `Events.OnMainMenuEnter`
-- `Events.OnGameStart`
+| System | Responsibility |
+|--------|----------------|
+| Profession | Register True Detective (`CharacterProfession`) |
+| Forage | Urban vision / junk-trash-ammo affinity |
+| Detection | Door-adjacent small-room living-zombie intuition |
+| Phrases | Search + danger speech |
+| Clothing | Creation-time occupation clothing |
 
-Each prints `[TrueDetective] Hello World (B42.20 mock) — <event>`.
+## Current scaffold
 
-## Archive
-
-Full previous architecture (profession, forage, detection): `legacy/docs/ARCHITECTURE.md` and `legacy/Contents/`.
+Hello-world client Lua only. See [[MOD-API]]. Archive: `legacy/`.

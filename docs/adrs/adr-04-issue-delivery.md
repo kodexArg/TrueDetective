@@ -1,0 +1,97 @@
+---
+title: adr-04-issue-delivery
+type: adr
+category: harness
+use_case: running a GitHub issue through delivery, wiring or changing the triage party, cloning a project that will use issue delivery, closing a party run that touched law or assertions
+created: 2026-08-08
+modified: 2026-08-08
+tags: [adr, harness, triage-and-fix, delivery, assertions]
+---
+
+# ADR-04 — issue delivery (triage-and-fix)
+
+## CONTEXT
+
+> This harness owns both the law and the delivery cast. One SSOT tree.
+> Runtimes differ; the phases, contracts, and assertion duties do not.
+
+Rules only. Phase names, dispatch maps, and operator wiring live in the
+documents listed under RELATED — not in this ADR.
+
+## ASSERTIONS
+
+1. GitHub issue delivery ships **in this repository**: skill
+   `docs/skills/kskill-triage-and-fix/`, cast `docs/agents/kwf-*.md`, deps CLI
+   `docs/skills/kskill-triage-and-fix/bin/kwf-deps`. That tree is the SSOT — not a
+   sibling checkout.
+2. **Include, adapt by runtime.** The playbook and YAML contracts are
+   runtime-agnostic. Optional host spawn notes live in
+   `docs/skills/kskill-triage-and-fix/references/runtimes.md`. A runtime may lack
+   a native `kwf-*` registry; it still runs the same phases by reading or
+   injecting `docs/agents/kwf-*.md` as prompts.
+3. Doctrine-first planning is binding: PRD and ADRs in force before a plan;
+   inquisitor before camp. That duty does not replace [[adr-03-guardians]] —
+   guardians still gate law changes after publish.
+4. After plaza / bard publishes, the **owner process** closes the batch: run
+   `docs/hooks/khook-guardian-dispatch --bundle` against the delivered change set;
+   paste the payload and dispatch
+   every guardian owed; honor `violation` / `danger` / `needs-new-adr` per
+   [[adr-03-guardians]].
+5. When a plan slice or delivered diff touches `docs/assertions/` or claims
+   to satisfy an assertion law, builders follow [[TDD]] and the
+   `kskill-assertion-review` skill: proving tests first, linked under `### Tests`,
+   then the code. The inquisitor treats "touches assertions without a TDD
+   step" as a plan `violation`. The owner process runs `kskill-assertion-review`
+   on those assertions before the batch closes.
+6. Unmet assertion laws do not block unrelated issues. They block (or
+   redirect into TDD) only work that claims those laws or edits their
+   files — hunter `constitutionOk` / camp deviations record the block;
+   inventing a new assertion without the owner is forbidden
+   ([[assertion-00-discipline]]).
+7. **Assertions are the entry path for important new features.** Delivery
+   may land ordinary fixes without an assertion; any feature the owner
+   elevates to a lasting promise enters as an assertion law, then tests,
+   then code — never code-first against a silent wish. For this mod,
+   profession registration, forage identity, and door-room intuition are
+   candidates for assertion laws once the owner reserves that compute.
+
+## FORBIDDEN
+
+- **NEVER** keep a second SSOT for the cast outside this tree (rule 1). A
+  historical sibling may mirror or point here; it must not diverge as a
+  competing source of truth.
+- **NEVER** treat a bard PR as batch-closed when `khook-guardian-dispatch` named
+  a guardian that was not run (rule 4).
+- **NEVER** mark an assertion `verified` from a party run without proving
+  tests per [[TDD]] (rule 5).
+
+## REJECTED
+
+- **Compose-only sibling (no cast in-tree)** — keep `kwf-*` exclusively in a
+  global harness checkout. Rejected: this mod repo must ship a working
+  delivery path. Reopen only if delivery is deliberately dropped.
+- **Vendoring for one host product only** — copy agents without documenting
+  path-based dispatch for any runtime. Rejected because the playbook's value
+  is the phase contracts, not one vendor's spawn tool.
+- **Name-only post-bard guardian close** — run `khook-guardian-dispatch` without
+  `--bundle`. Rejected in favor of [[adr-03-guardians]] rule 9.
+
+## RELATED
+
+### governed paths
+
+- `docs/skills/kskill-triage-and-fix/` — playbook, deps, runtime map
+- `docs/agents/kwf-*.md` — cast (with guardians)
+- `docs/hooks/khook-guardian-dispatch` — post-bard safety net entry
+- `docs/skills/kskill-assertion-review/` — assertion close-out
+- `docs/CLONE.md` — clone checklist including delivery wiring
+
+### related files
+
+- [[adr-01-constitution]] — assertions as feature entry path
+- [[adr-02-harness]] — skills/agents home
+- [[adr-03-guardians]] — guardian duty the post-bard step honors
+- [[assertion-00-discipline]] — laws camp/assertion-review must pass
+- [[TDD]] — test-first path when assertions are in play
+- [[HARNESS]] — delivery model in prose
+- [[CLONE]] — operator steps

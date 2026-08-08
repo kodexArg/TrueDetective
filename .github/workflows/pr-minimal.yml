@@ -1,0 +1,22 @@
+name: pr-minimal
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  paths:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: required paths
+        run: |
+          set -euo pipefail
+          test -f Contents/mods/TrueDetective/mod.info
+          test -d Contents/mods/TrueDetective/42.0/media
+          test -f docs/adrs/adr-00-discipline.md
+          test -f docs/adrs/adr-07-clean-code.md
+          test -f docs/adrs/adr-08-logging-strategy.md
+          test -f docs/adrs/adr-09-gh-deploy-and-versioning.md
+          grep -q '^id=TrueDetective' Contents/mods/TrueDetective/mod.info
+          test -d log

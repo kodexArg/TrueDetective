@@ -1,0 +1,1 @@
+UI_TrueDetective_Hello = "True Detective (hello world mock)"
