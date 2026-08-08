@@ -1,60 +1,80 @@
----
-title: True Detective
-description: Project Zomboid Build 42.20 profession mod — the Detective occupation
-updated: 2026-08-08
----
-
 # True Detective
 
-**Project Zomboid** mod for **Build 42.20**. Adds a fully integrated playable
-profession: **the Detective** (display name **True Detective**).
+**A Project Zomboid Build 42.20 profession mod by [kodexArg](https://github.com/kodexArg/TrueDetective).**
 
-| | |
-|---|---|
-| **Owner** | kodexArg |
-| **Mod id** | `TrueDetective` |
-| **Workshop id** | `3383387174` |
-| **Load root** | `Contents/mods/TrueDetective/42.0/` |
-| **Harness** | `kodexArg/harness-default` adapted |
-| **GitHub** | https://github.com/kodexArg/TrueDetective |
+---
 
-## Product
+*"You can keep the forest. I'll take the town."*
 
-Urban investigator fantasy: forage vision and junk/trash/ammo affinity, plus
-**door-adjacent small-room zombie intuition** with spoken phrases. B42
-registration uses **`CharacterProfession`** — never B41 `ProfessionFactory`.
+The **Detective** has no soldier's nerves and no ranger's love of berries.
+What he has is a method: twenty years of reading rooms, reading faces,
+reading the silence behind a locked door. This mod makes that method
+playable.
 
-Law and horizon: [docs/constitution/PRD.md](docs/constitution/PRD.md).  
-Requirements: [docs/constitution/REQUIREMENTS.md](docs/constitution/REQUIREMENTS.md).  
-ADRs: [docs/adrs/](docs/adrs/) (`adr-00`…`adr-09`).  
-Structure [adr-05](docs/adrs/adr-05-project-zomboid-mod-structure.md) · Steam [adr-06](docs/adrs/adr-06-steam-configurations.md) ·  
-Clean code [adr-07](docs/adrs/adr-07-clean-code.md) · Log [adr-08](docs/adrs/adr-08-logging-strategy.md) · Ship [adr-09](docs/adrs/adr-09-gh-deploy-and-versioning.md).
+## What you get, exactly
 
-## Quick start
+Every new Detective starts with:
 
-```bash
-./scripts/install-local.sh
-steam steam://rungameid/108600
-```
+- **A fedora, a leather coat, and trousers.** Always. Any color.
+- **A revolver and a box of .357 rounds.** Always. Never a pistol.
+- **75% chance each:** a magnifying glass, a cigarette pack, a lighter, a
+  full bottle of whiskey. *"Sometimes is all a man gets."*
+- **+2 Aiming** — the Veteran's gun handling. The price is **−8 points**,
+  the Veteran's price.
+- **The best urban search eye in the game:** search vision equal to the
+  Veteran, dark-room vision at the ceiling shared with the Burglar, and a
+  professional's nose for Trash, Junk, Junk Weapons, Ammunition, and
+  Medical finds. Nothing for the outdoors — no plants, no berries.
 
-Mods → enable **True Detective** → Apply. Fully restart the client after install.
+## Door Sense — how it works
 
-## Layout
+Press E on a **closed door or window**, and the Detective reads the room on
+the other side. Whether he speaks up depends on your attention:
 
-```text
-Contents/mods/TrueDetective/   # live mod SSOT
-docs/                          # constitution, ADRs, living docs, agent tooling
-legacy/                        # archive only — not installable
-scripts/install-local.sh
-```
+- **Search mode on** (Investigate Area) — **100%**. This is the job.
+- **Sneaking** — **50%**. Careful, but not looking.
+- **Just walking up** — **25%**. A hunch, nothing more.
 
-## Authority
+When the read lands:
 
-1. PRD + constitution  
-2. ADRs in `docs/adrs/`  
-3. Other `docs/`  
-4. Live `Contents/`  
+1. The mod checks the room on the other side — only real, small, closed
+   rooms count (50 squares or fewer).
+2. If a **live zombie** is inside, the door **does not open**. The action
+   is interrupted and a silent warning floats over your head:
+   *"Someone's been locked in here…"*
+3. That door goes quiet for **5 in-game minutes**. Press E again and it
+   opens normally — you were warned, the choice is yours.
 
-## License
+**Why no zombies chasing you?** Door Sense is focus, not reflex. If a
+zombie is already on your trail, your instincts are busy keeping you alive
+— there is nothing left for reading rooms. Run first, deduce later.
 
-[MIT](LICENSE)
+## Modified skills
+
+| Skill | Detective | Vanilla anchor |
+|---|---|---|
+| Cost | **−8** | Veteran −8 |
+| Aiming | **+2** | Veteran +2 (Police Officer +4) |
+| Search vision | **1.75** | Veteran 1.75 (Park Ranger 2.0) |
+| Darkness resistance | **15** | ceiling, shared with Burglar |
+| Weather resistance | **0** | Fisherman 40 — not his world |
+| Trash / Junk | **10** | Repairman & Mechanic 33 |
+| Junk Weapons | **10** | Burglar / Police 10 |
+| Ammunition | **10** | Veteran 50 |
+| Medical | **10** | Doctor / Nurse 40 |
+
+## Install
+
+1. Subscribe on the
+   [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174)
+   — or drop the folder into `Zomboid/mods`.
+2. Main menu → **Mods** → enable **True Detective** → Apply.
+3. New game → pick the **Detective** occupation.
+
+## Contribute
+
+The case is never really closed. Found a bug, a balance hole, a phrase the
+Detective should say? **Issues and pull requests are welcome** at
+<https://github.com/kodexArg/TrueDetective> — every clue counts.
+
+License: [MIT](LICENSE)

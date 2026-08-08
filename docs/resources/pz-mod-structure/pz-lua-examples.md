@@ -98,11 +98,15 @@ end
 
 ## 5. English UI string table
 
-Path: `42.0/media/lua/shared/Translate/EN/UI_EN.txt`
+Path: `42.0/media/lua/shared/Translate/EN/UI.json`  
+Build 42.20 reads **JSON** translation files (`<Context>.json` per language
+folder). The B41 `UI_EN.txt` table format is ignored.
 
-```text
-UI_prof_truedetective = "True Detective",
-UI_profdesc_truedetective = "An urban investigator. Strong indoor search vision and a knack for sensing danger behind small doors.",
+```json
+{
+    "UI_prof_truedetective": "Detective",
+    "UI_profdesc_truedetective": "A hard-boiled urban investigator. Walks into the apocalypse wearing a fedora and a leather coat, with a trusty revolver and spare rounds."
+}
 ```
 
 Locale codes use the game’s Translate folders (`EN`, `ES`, …). Config keys and

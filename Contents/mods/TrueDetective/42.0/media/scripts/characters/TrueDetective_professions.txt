@@ -1,0 +1,14 @@
+module TrueDetective
+{
+
+character_profession_definition truedetective:truedetective
+{
+    CharacterProfession = truedetective:truedetective,
+    Cost = -8,
+    UIName = UI_prof_truedetective,
+    UIDescription = UI_profdesc_truedetective,
+    IconPathName = profession_detective,
+    XPBoosts = Aiming=2,
+}
+
+}
