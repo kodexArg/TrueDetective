@@ -22,6 +22,10 @@
 - First mechanics ship (owner facts, `docs/DETECTIVE-STATS.md`): `Cost = -8`,
   `XPBoosts = Aiming=2`, forage skill def (vision 1.75, darkness 15,
   weather 0, Trash/Junk/JunkWeapons/Ammunition/Medical 10).
+- **Door Sense** ([adr-10](docs/adrs/adr-10-true-detective-mechanics.md)):
+  sneaking detective who opens a door/window onto a small closed room with a
+  live zombie gets the opening interrupted and a silent halo warning; 5
+  in-game minute cooldown per element lets the second try straight through.
 - README rewritten player-facing; AGENTS.md cut to read-first + skills + harness.
 
 ## [unreleased] — harness + structure/steam ADRs

@@ -13,6 +13,7 @@ updated: 2026-08-08
 | Forage | `shared/TrueDetective/ForageSkills.lua` → `forageSystem.addSkillDef` (vision 1.75, darkness 15, weather 0; Trash/Junk/JunkWeapons/Ammunition/Medical 10) |
 | Clothing | `ClothingSelectionDefinitions.truedetective` in `shared/TrueDetective/Outfit.lua` — fedora + leather long coat, chance 100 |
 | Starting gear | `client/TrueDetective/StartingGear.lua` on `OnNewGame` — `Base.Revolver` + `Base.Bullets357Box` guaranteed; magnifying glass, cigarette pack, lighter, whiskey at 75% each |
+| Door Sense | `client/TrueDetective/DoorSense.lua` + `shared/TrueDetective/RoomScan.lua` — sneak-gated interruption of door/window opens when a live zombie waits in a small closed room; law: [[adr-10-true-detective-mechanics]] |
 | Icon | `42.0/media/textures/profession_detective.png` |
 | Strings | `UI_prof_truedetective` / `UI_profdesc_truedetective` in Translate EN |
 

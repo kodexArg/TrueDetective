@@ -5,7 +5,7 @@ Project Zomboid **Build 42.20** profession mod. Mod id `TrueDetective`.
 ## Read first — always, before any work
 
 1. `docs/constitution/PRD.md`
-2. **Every** ADR in `docs/adrs/` (`adr-00` … `adr-09`)
+2. **Every** ADR in `docs/adrs/` (`adr-00` … `adr-10`)
 
 Where code and ADR disagree, **ADR wins**.
 
