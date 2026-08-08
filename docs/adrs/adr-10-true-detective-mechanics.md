@@ -4,7 +4,7 @@ type: adr
 category: backend
 use_case: changing door sense trigger, interruption, sneak or chase filters, room cap, cooldown, alert channel, or any detection number; touching DoorSense/RoomScan/Phrases Lua
 created: 2026-08-08
-modified: 2026-08-08
+modified: 2026-08-08 (Lead Sense added: rules 13-16)
 tags: [adr, backend, project-zomboid, b42, mechanics, door-sense, true-detective]
 ---
 
@@ -58,6 +58,23 @@ deterministic pattern, no chance rolls.
     decides whether the read happens. Given a successful read, detection is
     deterministic: filters + room + zombie.
 
+## LEAD SENSE (second mechanic, stacks with Door Sense)
+
+13. **Trigger.** Lead Sense scans automatically while the detective is in
+    **search mode**, throttled to one scan every **45 ticks**. No scan
+    outside search mode; no scan for other professions.
+14. **Radius.** The scan covers the player's full engine search radius:
+    `maxVisionRadius` + profession/trait/perk bonuses, clamped to the
+    `visionRadiusCap` (15). **Walls do not block it.**
+15. **Lead.** Each newly found live zombie in radius raises a **lead**: a
+    silent `setHaloNote` from the lead phrase pool. Zombies the player can
+    already see are marked silently — no message for open eyes.
+16. **Once per zombie, shared.** Detection state lives on the zombie
+    (`modData.tdLead`). Both mechanics honor it: Lead Sense never re-reports
+    a marked zombie, and Door Sense alerts only when the room holds at
+    least one **undetected** zombie — on alert it marks all zombies in that
+    room.
+
 ## FORBIDDEN
 
 - **NEVER** reintroduce the legacy square-change trigger or its 66/10
@@ -68,6 +85,8 @@ deterministic pattern, no chance rolls.
 - **NEVER** poll per tick or on player move for this feature.
 - **NEVER** alert on rooms over 50 squares, dead zombies, or non-room spaces.
 - **NEVER** make the alert audible to zombies or emit sound.
+- **NEVER** alert twice for the same zombie — the shared `tdLead` mark is
+  honored by both mechanics.
 - **NEVER** change these rules in code without amending this ADR first.
 
 ## REJECTED
@@ -90,6 +109,7 @@ deterministic pattern, no chance rolls.
 ### governed paths
 
 - `Contents/mods/TrueDetective/42.0/media/lua/client/TrueDetective/DoorSense.lua`
+- `Contents/mods/TrueDetective/42.0/media/lua/client/TrueDetective/LeadSense.lua`
 - `Contents/mods/TrueDetective/42.0/media/lua/shared/TrueDetective/RoomScan.lua`
 - `Contents/mods/TrueDetective/42.0/media/lua/shared/TrueDetective/Phrases.lua`
 - `Contents/mods/TrueDetective/42.0/media/lua/shared/Translate/EN/UI.json`

@@ -27,6 +27,10 @@
   opening interrupted and a silent halo warning; chance by attention —
   search mode 100%, sneaking 50%, casual 25%; 5 in-game minute cooldown per
   element lets the second try straight through.
+- **Lead Sense** (adr-10 rules 13-16): in search mode, a throttled
+  full-radius scan detects zombies through walls as silent "lead" lines;
+  each zombie is detected once ever, via a shared `tdLead` mark honored by
+  Door Sense too.
 - README rewritten player-facing; AGENTS.md cut to read-first + skills + harness.
 
 ## [unreleased] — harness + structure/steam ADRs

@@ -14,6 +14,7 @@ updated: 2026-08-08
 | Clothing | `ClothingSelectionDefinitions.truedetective` in `shared/TrueDetective/Outfit.lua` — fedora + leather long coat, chance 100 |
 | Starting gear | `client/TrueDetective/StartingGear.lua` on `OnNewGame` — `Base.Revolver` + `Base.Bullets357Box` guaranteed; magnifying glass, cigarette pack, lighter, whiskey at 75% each |
 | Door Sense | `client/TrueDetective/DoorSense.lua` + `shared/TrueDetective/RoomScan.lua` — sneak-gated interruption of door/window opens when a live zombie waits in a small closed room; law: [[adr-10-true-detective-mechanics]] |
+| Lead Sense | `client/TrueDetective/LeadSense.lua` — search-mode full-radius scan through walls; each zombie reported once, shared `tdLead` mark with Door Sense |
 | Icon | `42.0/media/textures/profession_detective.png` |
 | Strings | `UI_prof_truedetective` / `UI_profdesc_truedetective` in Translate EN |
 

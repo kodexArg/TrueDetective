@@ -59,4 +59,42 @@ function RoomScan.hasLiveZombie(square)
     return false
 end
 
+function RoomScan.isDetected(zombie)
+    return zombie:getModData().tdLead == true
+end
+
+function RoomScan.markDetected(zombie)
+    zombie:getModData().tdLead = true
+end
+
+function RoomScan.undetectedZombies(square)
+    local found = {}
+    if not square then
+        return found
+    end
+    local room = square:getRoom()
+    if not room then
+        return found
+    end
+    local squares = room:getSquares()
+    if not squares or squares:size() > RoomScan.MAX_ROOM_SQUARES then
+        return found
+    end
+    for i = 0, squares:size() - 1 do
+        local tile = squares:get(i)
+        if tile then
+            local moving = tile:getMovingObjects()
+            if moving then
+                for j = 0, moving:size() - 1 do
+                    local obj = moving:get(j)
+                    if instanceof(obj, "IsoZombie") and obj:isAlive() and not RoomScan.isDetected(obj) then
+                        table.insert(found, obj)
+                    end
+                end
+            end
+        end
+    end
+    return found
+end
+
 return RoomScan

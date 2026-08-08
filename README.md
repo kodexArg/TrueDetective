@@ -49,6 +49,19 @@ When the read lands:
 zombie is already on your trail, your instincts are busy keeping you alive
 — there is nothing left for reading rooms. Run first, deduce later.
 
+## Lead Sense — the second mechanic
+
+In **search mode**, the Detective's read goes further: a full scan of his
+entire search radius, **through walls**. Every zombie inside that circle
+becomes a **lead** — a silent line over your head: *"A trail. Fresh."*
+Zombies already in plain sight stay silent; a lead is for what you cannot
+see.
+
+Each zombie is a lead **once, ever**. Both mechanics share the same memory:
+a zombie found by Lead Sense won't trigger Door Sense later, and a zombie
+behind a door you were warned about won't come back as a lead. The
+Detective doesn't repeat himself.
+
 ## Modified skills
 
 | Skill | Detective | Vanilla anchor |

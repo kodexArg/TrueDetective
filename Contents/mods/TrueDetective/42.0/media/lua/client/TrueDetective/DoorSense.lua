@@ -110,8 +110,12 @@ function DoorSense.shouldInterrupt(player, element)
         return false
     end
     local target = RoomScan.farSquare(element, player:getSquare())
-    if not RoomScan.hasLiveZombie(target) then
+    local undetected = RoomScan.undetectedZombies(target)
+    if #undetected == 0 then
         return false
+    end
+    for _, zombie in ipairs(undetected) do
+        RoomScan.markDetected(zombie)
     end
     if key then
         startCooldown(player, key)

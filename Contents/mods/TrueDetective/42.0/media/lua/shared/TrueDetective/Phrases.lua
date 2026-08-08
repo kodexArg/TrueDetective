@@ -16,4 +16,17 @@ function Phrases.danger()
     return getText(Phrases.DANGER_POOL[ZombRand(#Phrases.DANGER_POOL) + 1])
 end
 
+Phrases.LEAD_POOL = {
+    "UI_td_lead_1",
+    "UI_td_lead_2",
+    "UI_td_lead_3",
+    "UI_td_lead_4",
+    "UI_td_lead_5",
+    "UI_td_lead_6",
+}
+
+function Phrases.lead()
+    return getText(Phrases.LEAD_POOL[ZombRand(#Phrases.LEAD_POOL) + 1])
+end
+
 return Phrases
