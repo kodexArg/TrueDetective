@@ -28,9 +28,16 @@ Every new Detective starts with:
 
 ## Door Sense — how it works
 
-When you are **sneaking** and you press E on a **closed door or window**:
+Press E on a **closed door or window**, and the Detective reads the room on
+the other side. Whether he speaks up depends on your attention:
 
-1. The mod reads the room on the other side — only real, small, closed
+- **Search mode on** (Investigate Area) — **100%**. This is the job.
+- **Sneaking** — **50%**. Careful, but not looking.
+- **Just walking up** — **25%**. A hunch, nothing more.
+
+When the read lands:
+
+1. The mod checks the room on the other side — only real, small, closed
    rooms count (50 squares or fewer).
 2. If a **live zombie** is inside, the door **does not open**. The action
    is interrupted and a silent warning floats over your head:
@@ -38,15 +45,9 @@ When you are **sneaking** and you press E on a **closed door or window**:
 3. That door goes quiet for **5 in-game minutes**. Press E again and it
    opens normally — you were warned, the choice is yours.
 
-No dice rolls. Sneaking detective plus zombie behind a small closed door
-equals warning, every time.
-
 **Why no zombies chasing you?** Door Sense is focus, not reflex. If a
 zombie is already on your trail, your instincts are busy keeping you alive
 — there is nothing left for reading rooms. Run first, deduce later.
-
-Standing up also disables it: an upright detective walks in blind. Crouch
-first, then knock.
 
 ## Modified skills
 

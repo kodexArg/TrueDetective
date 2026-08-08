@@ -5,6 +5,20 @@ local DoorSense = {}
 
 DoorSense.COOLDOWN_HOURS = 5 / 60
 DoorSense.CHASE_RADIUS = 10
+DoorSense.CHANCE_SEARCH_MODE = 100
+DoorSense.CHANCE_SNEAKING = 50
+DoorSense.CHANCE_CASUAL = 25
+
+local function alertChance(player)
+    local manager = ISSearchManager and ISSearchManager.players and ISSearchManager.players[player]
+    if manager and manager.isSearchMode then
+        return DoorSense.CHANCE_SEARCH_MODE
+    end
+    if player:isSneaking() then
+        return DoorSense.CHANCE_SNEAKING
+    end
+    return DoorSense.CHANCE_CASUAL
+end
 
 local function isDetective(player)
     if not player then
@@ -79,7 +93,7 @@ function DoorSense.shouldInterrupt(player, element)
     if not isDetective(player) then
         return false
     end
-    if not player:isSneaking() then
+    if ZombRand(100) >= alertChance(player) then
         return false
     end
     if isChased(player) then

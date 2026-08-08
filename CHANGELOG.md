@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased] — True Detective profession loadout
+## [42.20-0.2] — 2026-08-08 · tag `v42.20-0.2` — True Detective profession
 
 ### Product
 
@@ -23,9 +23,10 @@
   `XPBoosts = Aiming=2`, forage skill def (vision 1.75, darkness 15,
   weather 0, Trash/Junk/JunkWeapons/Ammunition/Medical 10).
 - **Door Sense** ([adr-10](docs/adrs/adr-10-true-detective-mechanics.md)):
-  sneaking detective who opens a door/window onto a small closed room with a
-  live zombie gets the opening interrupted and a silent halo warning; 5
-  in-game minute cooldown per element lets the second try straight through.
+  opening a door/window onto a small closed room with a live zombie gets the
+  opening interrupted and a silent halo warning; chance by attention —
+  search mode 100%, sneaking 50%, casual 25%; 5 in-game minute cooldown per
+  element lets the second try straight through.
 - README rewritten player-facing; AGENTS.md cut to read-first + skills + harness.
 
 ## [unreleased] — harness + structure/steam ADRs

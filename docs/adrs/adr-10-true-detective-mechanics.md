@@ -33,8 +33,9 @@ deterministic pattern, no chance rolls.
    `openWindow` never run and the element stays closed.
 3. **Profession gate.** Only `truedetective` (`getName()`). Other
    professions open elements untouched.
-4. **Sneak filter.** The player must be sneaking (`isSneaking()`). A
-   standing detective gets no read.
+4. **Attention levels.** The read is a chance roll by player state:
+   **search mode active → 100%**, **sneaking → 50%**, otherwise **25%**.
+   Search mode state is `ISSearchManager.players[player].isSearchMode`.
 5. **Chase filter.** If any live zombie within 10 squares currently targets
    the player, Door Sense stays silent — a chased detective has no focus.
 6. **Open-state filter.** Closing an element never triggers a read; only
@@ -53,12 +54,17 @@ deterministic pattern, no chance rolls.
     cooldown (stored per element coordinates in player modData). During
     cooldown the element opens normally — the second activation goes
     straight through. Safe openings never start a cooldown.
-12. **No chances.** Detection is deterministic: filters + room + zombie.
-    No random roll decides whether the detective notices.
+12. **Alert chance by attention.** Only the attention roll of rule 4
+    decides whether the read happens. Given a successful read, detection is
+    deterministic: filters + room + zombie.
 
 ## FORBIDDEN
 
-- **NEVER** reintroduce chance rolls (66/10 or any) into Door Sense.
+- **NEVER** reintroduce the legacy square-change trigger or its 66/10
+  search-toggle chances (owner replaced them with the attention levels of
+  rule 4).
+- **NEVER** change the attention chances (100 / 50 / 25) without amending
+  this ADR.
 - **NEVER** poll per tick or on player move for this feature.
 - **NEVER** alert on rooms over 50 squares, dead zombies, or non-room spaces.
 - **NEVER** make the alert audible to zombies or emit sound.
@@ -68,8 +74,10 @@ deterministic pattern, no chance rolls.
 
 - **Square-change trigger (legacy)** — rejected by owner; the read belongs
   to the moment of opening, not to walking past.
-- **66% search / 10% passive chances (legacy)** — rejected; deterministic
-  pattern chosen instead.
+- **66% search / 10% passive chances (legacy)** — rejected; replaced first
+  by a deterministic sneak gate, then by the 100/50/25 attention levels.
+- **Sneak-only deterministic gate (first cut)** — rejected by owner; search
+  mode is the deliberate-investigation state, chances reward attention.
 - **`player:Say` for alerts** — rejected; audible speech to nearby players
   in MP. `setHaloNote` is the silent channel.
 - **Interrupting locked doors** — rejected; a door that cannot open exposes
