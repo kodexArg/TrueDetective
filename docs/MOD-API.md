@@ -4,16 +4,19 @@ description: Current and target mod surface for True Detective on B42.20
 updated: 2026-08-08
 ---
 
-## Current scaffold (v42.20-0.1 tree)
+## Current surface (v42.20-0.2 tree)
 
 | Kind | Detail |
 |------|--------|
-| Events | `OnGameBoot`, `OnMainMenuEnter`, `OnGameStart` (HelloWorld print) |
-| Side effect | `print` to client console |
-| Profession | **not yet** in live `Contents/` (target below) |
-| Scripts / registries | **not yet** in live `Contents/` |
+| Registration | `42.0/media/registries.lua` → `CharacterProfession.register("truedetective:truedetective")` |
+| Script | `42.0/media/scripts/characters/TrueDetective_professions.txt` (`Cost = -8`, `XPBoosts = Aiming=2`) |
+| Forage | `shared/TrueDetective/ForageSkills.lua` → `forageSystem.addSkillDef` (vision 1.75, darkness 15, weather 0; Trash/Junk/JunkWeapons/Ammunition/Medical 10) |
+| Clothing | `ClothingSelectionDefinitions.truedetective` in `shared/TrueDetective/Outfit.lua` — fedora + leather long coat, chance 100 |
+| Starting gear | `client/TrueDetective/StartingGear.lua` on `OnNewGame` — `Base.Revolver` + `Base.Bullets357Box` guaranteed; magnifying glass, cigarette pack, lighter, whiskey at 75% each |
+| Icon | `42.0/media/textures/profession_detective.png` |
+| Strings | `UI_prof_truedetective` / `UI_profdesc_truedetective` in Translate EN |
 
-Hello-world proof is a temporary load scaffold. It is not the product.
+Loadout facts and item evidence: [[OUTFIT]]. Hello-world scaffold removed.
 
 ## Target product surface
 
@@ -22,7 +25,7 @@ Hello-world proof is a temporary load scaffold. It is not the product.
 | Registration | `CharacterProfession.register` + `character_profession_definition` scripts |
 | Resource id | `truedetective:truedetective` |
 | `getName()` | `truedetective` |
-| Display name | True Detective (`UI_prof_truedetective`) |
+| Display name | Detective (`UI_prof_truedetective`) |
 | Forage | occupation skill def keyed to `truedetective` via `forageSystem.addSkillDef` |
 | Detection | client/shared Lua for door-adjacent small-room living-zombie checks |
 | Phrases | search-start and danger pools; Translate / in-character speech |

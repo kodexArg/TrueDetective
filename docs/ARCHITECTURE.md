@@ -15,19 +15,18 @@ updated: 2026-08-08
 Contents/mods/TrueDetective/
 ├── mod.info                 # id=TrueDetective
 ├── icon.png / poster.png
-├── common/                  # B42 shared assets (required presence)
-│   └── media/…
+├── common/                  # B42 shared assets (required presence; mod.info + art)
 └── 42.0/                    # primary version root for Build 42.20
     ├── mod.info
     ├── poster.png / icon.png
     └── media/
-        ├── registries.lua   # when profession ships
+        ├── registries.lua   # CharacterProfession.register
         ├── lua/
         │   ├── client/TrueDetective/
         │   ├── shared/TrueDetective/
         │   └── server/…     # if needed
-        ├── scripts/…
-        └── textures/…
+        ├── scripts/characters/
+        └── textures/
 ```
 
 Full trees: [[pz-mod-tree]].
@@ -50,6 +49,7 @@ Install: `scripts/install-local.sh` → real directory (not symlink).
 | Phrases | Search + danger speech |
 | Clothing | Creation-time occupation clothing |
 
-## Current scaffold
+## Current surface
 
-Hello-world client Lua only. See [[MOD-API]]. Archive: `legacy/`.
+Profession registration, creation outfit, and starting gear ship. Loadout
+detail: [[OUTFIT]]. See [[MOD-API]]. Archive: `legacy/`.

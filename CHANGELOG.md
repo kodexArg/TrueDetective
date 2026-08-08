@@ -1,5 +1,29 @@
 # Changelog
 
+## [unreleased] — True Detective profession loadout
+
+### Product
+
+- Playable profession registered via `CharacterProfession.register`
+  (`truedetective:truedetective`) + `character_profession_definition` script
+  (`Cost = 0`, neutral — mechanics ADR pending).
+- Creation outfit (`shared/TrueDetective/Outfit.lua`): fedora + leather long
+  coat, always worn (`chance = 100`), random vanilla textures. Facts: `docs/OUTFIT.md`.
+- Starting gear on new game (`client/TrueDetective/StartingGear.lua`):
+  `Base.Revolver` + `Base.Bullets357Box` (no speedloader item exists in 42.20).
+- Hello-world scaffold removed; `common/media` dropped; `modversion=42.20-0.2`.
+- Display name is **Detective**; UI strings moved to 42.20 JSON format
+  (`Translate/EN/UI.json` — the B41 `UI_EN.txt` table format is ignored by the
+  engine and showed raw keys).
+- Pants join the mandatory outfit (`chance = 100`): random-tint trousers or
+  denim jeans.
+- Starting gear gains the noir extras, 75% chance each (owner call):
+  `Base.MagnifyingGlass`, `Base.CigarettePack`, `Base.Lighter`, `Base.Whiskey`.
+- First mechanics ship (owner facts, `docs/DETECTIVE-STATS.md`): `Cost = -8`,
+  `XPBoosts = Aiming=2`, forage skill def (vision 1.75, darkness 15,
+  weather 0, Trash/Junk/JunkWeapons/Ammunition/Medical 10).
+- README rewritten player-facing; AGENTS.md cut to read-first + skills + harness.
+
 ## [unreleased] — harness + structure/steam ADRs
 
 ### Harness

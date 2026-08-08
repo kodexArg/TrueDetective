@@ -4,7 +4,7 @@ description: True Detective — B42.20 profession mod objective, who it serves, 
 updated: 2026-08-08
 ---
 
-**True Detective** is a **Project Zomboid Build 42.20** **profession mod**. It adds one fully integrated, playable occupation: **the Detective** (display name **True Detective**). It answers the want for a careful *urban* investigator fantasy — stronger indoor/urban forage vision than Veteran, high affinity for junk, trash, and ammunition, and a unique **door-adjacent small-room zombie intuition** that speaks in character, louder while searching.
+**True Detective** is a **Project Zomboid Build 42.20** **profession mod**. It adds one fully integrated, playable occupation: **the Detective** (display name **Detective**). It answers the want for a careful *urban* investigator fantasy — stronger indoor/urban forage vision than Veteran, high affinity for junk, trash, and ammunition, and a unique **door-adjacent small-room zombie intuition** that speaks in character, louder while searching.
 
 This is the B42 rebuild of the private B41 *Detective Profession* (Workshop [3383387174](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174)). Registration on B42.20 uses **`CharacterProfession.register`** plus script definition under `Contents/mods/TrueDetective/42.0/` — **never** B41 `ProfessionFactory`. The occupation is distinct from third-party packs (for example SOTO’s simpler `soto:detective`); **door-room intuition with spoken phrases is unique to this mod**.
 
