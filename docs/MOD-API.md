@@ -1,7 +1,7 @@
 ---
 title: MOD-API
 description: Current and target mod surface for True Detective on B42.20
-updated: 2026-08-08
+updated: 2026-08-09
 ---
 
 ## Current surface (v42.20-0.3 tree)
@@ -12,7 +12,7 @@ updated: 2026-08-08
 | Script | `42.0/media/scripts/characters/TrueDetective_professions.txt` (`Cost = -8`, `XPBoosts = Aiming=2`) |
 | Forage | `shared/TrueDetective/ForageSkills.lua` → `forageSystem.addSkillDef` (vision 1.75, darkness 15, weather 0; Trash/Junk/JunkWeapons/Ammunition/Medical 10) |
 | Clothing | `ClothingSelectionDefinitions.truedetective` in `shared/TrueDetective/Outfit.lua` — fedora + leather long coat, chance 100 |
-| Starting gear | `client/TrueDetective/StartingGear.lua` on `OnNewGame` — `Base.Revolver` (loaded, 6/6) + `Base.Bullets357Box` + `Base.MagnifyingGlass` guaranteed; pipe with tobacco, cigarette pack, lighter, whiskey at 75% each |
+| Starting gear | `client/TrueDetective/StartingGear.lua` on `OnNewGame` — `Base.Revolver` (loaded, 6/6) + `Base.Bullets357Box` + `Base.MagnifyingGlass` guaranteed; pipe with tobacco, loose tobacco, lighter, whiskey at 75% each |
 | Survey Sense | `client/TrueDetective/SurveySense.lua` on `OnTick` — 5s immobile + glass in primary hand → whispered report of ≤5 closest zombies, once per zombie, grouped by room/direction. Law: [[adr-10-survey-sense]] |
 | Icon | `42.0/media/textures/profession_detective.png` |
 | Strings | `UI_prof_truedetective` / `UI_profdesc_truedetective` + `UI_td_survey_*` / `UI_td_dir_*` / `UI_td_room_*` in Translate EN |

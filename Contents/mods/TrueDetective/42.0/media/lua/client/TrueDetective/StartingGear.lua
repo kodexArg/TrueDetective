@@ -5,7 +5,7 @@ local GUARANTEED_GEAR = {
 
 local OPTIONAL_GEAR = {
     "Base.SmokingPipe_Tobacco",
-    "Base.CigarettePack",
+    "Base.TobaccoLoose",
     "Base.Lighter",
     "Base.Whiskey",
 }
