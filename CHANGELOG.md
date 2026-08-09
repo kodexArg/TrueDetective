@@ -1,5 +1,24 @@
 # Changelog
 
+## [unreleased] — Survey Sense replaces Door Sense
+
+### Product
+
+- **Survey Sense** ships as the Detective's only ability
+  (`client/TrueDetective/SurveySense.lua`, law in
+  `docs/adrs/adr-10-survey-sense.md`): magnifying glass in the primary hand,
+  ~5 seconds immobile → silent `setHaloNote` report of the ≤5 closest living
+  zombies, once per zombie, grouped by room or compass direction.
+- Door Sense retired from `main`; code lives on the `legacy` branch, its ADR
+  moved to `docs/obsolete/adr-10-door-sense-retired.md`.
+- Starting gear: revolver now spawns **loaded** (6/6); `Base.MagnifyingGlass`
+  moves to guaranteed (it gates Survey Sense); `Base.SmokingPipe_Tobacco`
+  joins the 75% noir extras.
+- New strings: `UI_td_survey_*`, `UI_td_dir_*`, `UI_td_room_*`; danger phrase
+  keys dropped with Door Sense; profession description mentions the loaded
+  revolver and the glass.
+- `modversion=42.20-0.3`.
+
 ## [42.20-0.2] — 2026-08-08 · tag `v42.20-0.2` — True Detective profession
 
 ### Product

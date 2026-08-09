@@ -45,8 +45,8 @@ Install: `scripts/install-local.sh` → real directory (not symlink).
 |--------|----------------|
 | Profession | Register True Detective (`CharacterProfession`) |
 | Forage | Urban vision / junk-trash-ammo affinity |
-| Detection | Door-adjacent small-room living-zombie intuition |
-| Phrases | Search + danger speech |
+| Detection | Survey Sense: immobile + magnifying glass → whispered zombie report |
+| Phrases | Deterministic survey lines (room / direction, singles + groups) |
 | Clothing | Creation-time occupation clothing |
 
 ## Current surface

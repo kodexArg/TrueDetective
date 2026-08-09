@@ -35,57 +35,67 @@ Then vision and specialisations match the binding mechanics ADR
 And Junk, Trash, and Ammunition remain high-affinity categories
 ```
 
-## UC-03 — Search mode raises detection chance
+## UC-03 — CLOSED (legacy tile-change roll)
+
+Retired 2026-08-08 with the door/window senses; archive on the `legacy`
+branch. Survey Sense (UC-11 and up) replaces the roll model.
+
+## UC-04 — CLOSED (legacy passive roll)
+
+Retired 2026-08-08, see UC-03.
+
+## UC-05 — CLOSED (legacy room-size gate)
+
+Retired 2026-08-08, see UC-03.
+
+## UC-06 — CLOSED (legacy living-only gate)
+
+Retired 2026-08-08, see UC-03.
+
+## UC-07 — CLOSED (legacy profession gate case)
+
+Retired 2026-08-08, see UC-03. The profession gate itself lives on in UC-11.
+
+## UC-08 — CLOSED (legacy search-start phrase)
+
+Retired 2026-08-08, see UC-03.
+
+## UC-11 — Survey after five still seconds
 
 ```gherkin
-Given a True Detective character standing next to a door into a small room
-And that room contains at least one living zombie
-And the character is in search mode
-When the character moves onto a new tile and the detection roll succeeds
-Then the character speaks a danger phrase
+Given a True Detective character with a magnifying glass equipped as primary
+And living unmarked zombies within 15 squares
+When the character stays on the same square for about 5 real seconds
+Then the character whispers a report line (setHaloNote) naming places
+And no sound is emitted
 ```
 
-## UC-04 — Passive intuition is rare
+## UC-12 — No glass, no survey
 
 ```gherkin
-Given a True Detective character not in search mode
-And a door-adjacent small room contains a living zombie
-When the character changes tile
-Then a danger phrase is spoken only when the passive roll succeeds
+Given a True Detective character without a magnifying glass as primary
+When the character stands still for any length of time
+Then no survey report is produced
+And a non-Detective character never surveys either
 ```
 
-## UC-05 — Large rooms never alert
+## UC-13 — Closest five, once per zombie
 
 ```gherkin
-Given a True Detective character and a door-adjacent room larger than the room size gate
-And living zombies are present in that room
-When a detection roll would otherwise run
-Then no danger phrase is spoken for that room
+Given a True Detective character surveying
+When more than five living unmarked zombies are in radius
+Then at most the five closest are reported
+And each reported zombie is marked and never reported again
+And dead zombies are never reported
 ```
 
-## UC-06 — Only living zombies count
+## UC-14 — Groups named by place
 
 ```gherkin
-Given a True Detective character and a small door-adjacent room
-And the room contains only dead zombies or no IsoZombie objects
-When detection runs
-Then no danger phrase is spoken
-```
-
-## UC-07 — Non–True Detective characters do not get intuition
-
-```gherkin
-Given a character without the True Detective profession
-When they change tiles beside a small room full of living zombies
-Then True Detective does not speak danger phrases for them
-```
-
-## UC-08 — Search start phrase
-
-```gherkin
-Given a True Detective character
-When they enter search mode
-Then the character speaks a search-start phrase from the mod phrase pool
+Given a survey reports three or more zombies in the same room
+Then one group line names the count and the room
+And a zombie outdoors is named by compass direction instead
+And a room without a translation falls back to "building"
 ```
 
 ## UC-09 — Clothing spawn definitions

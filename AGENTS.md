@@ -2,6 +2,10 @@
 
 Project Zomboid **Build 42.20** profession mod. Mod id `TrueDetective`.
 
+The Detective's only ability is **Survey Sense** (magnifying glass, 5s
+immobile, whispered zombie report). Door/window senses are retired to the
+`legacy` branch — never port them back to `main`.
+
 ## Read first — always, before any work
 
 1. `docs/constitution/PRD.md`

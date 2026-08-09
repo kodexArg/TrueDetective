@@ -1,16 +1,23 @@
 local GUARANTEED_GEAR = {
-    "Base.Revolver",
     "Base.Bullets357Box",
+    "Base.MagnifyingGlass",
 }
 
 local OPTIONAL_GEAR = {
-    "Base.MagnifyingGlass",
+    "Base.SmokingPipe_Tobacco",
     "Base.CigarettePack",
     "Base.Lighter",
     "Base.Whiskey",
 }
 
 local OPTIONAL_CHANCE = 75
+
+local function giveLoadedRevolver(inventory)
+    local revolver = inventory:AddItem("Base.Revolver")
+    if instanceof(revolver, "HandWeapon") then
+        revolver:setCurrentAmmoCount(revolver:getMaxAmmo())
+    end
+end
 
 local function giveStartingGear(player)
     if not player then
@@ -25,6 +32,7 @@ local function giveStartingGear(player)
         return
     end
     local inventory = player:getInventory()
+    giveLoadedRevolver(inventory)
     for _, itemType in ipairs(GUARANTEED_GEAR) do
         inventory:AddItem(itemType)
     end

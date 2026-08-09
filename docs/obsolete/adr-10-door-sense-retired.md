@@ -10,6 +10,10 @@ tags: [adr, backend, project-zomboid, b42, mechanics, door-sense, true-detective
 
 # ADR-10 — True Detective mechanics: Door Sense
 
+> **RETIRED 2026-08-08** — superseded by [[adr-10-survey-sense]]. The door
+> senses no longer ship on `main`; their code lives on the `legacy` branch.
+> This file is archive, never law.
+
 ## CONTEXT
 
 > Door Sense is the Detective's special ability: reading a room through a

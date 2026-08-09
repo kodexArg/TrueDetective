@@ -25,13 +25,14 @@ they do for generic combat professions.
 
 Realized by: UC-02.
 
-## US-03 — Sense danger behind doors
+## US-03 — Read the area through the glass
 
-As True Detective, I want spoken intuition when a small room beyond a door holds
-living zombies — especially while searching — so that careful movement feels
-smart and lethal surprises drop without becoming ESP in large halls.
+As True Detective, I want to stand still with my magnifying glass and have my
+character whisper where the nearest zombies are — by room indoors, by
+direction outdoors, groups called out as groups — so that patient play is
+rewarded with precise, quiet intel.
 
-Realized by: UC-03, UC-04, UC-05, UC-06, UC-07, UC-08.
+Realized by: UC-11, UC-12, UC-13, UC-14.
 
 ## US-04 — Enable the mod on my host
 

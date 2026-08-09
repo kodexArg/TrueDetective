@@ -34,14 +34,15 @@ Guaranteed:
 
 | Item id | Why |
 |---------|-----|
-| `Base.Revolver` | The revolver. Never a pistol. .357, 6 rounds. |
+| `Base.Revolver` | The revolver. Never a pistol. .357, spawned **loaded 6/6** (`setCurrentAmmoCount(getMaxAmmo())`). |
 | `Base.Bullets357Box` | The spare "magazine". Build 42.20 has **no speedloader item**; a box of matching .357 rounds is the closest real thing. |
+| `Base.MagnifyingGlass` | The investigator's tool — guaranteed because it gates Survey Sense ([[adr-10-survey-sense]]). |
 
 75% chance each (owner call — "that's how our detective is"):
 
 | Item id | What it is |
 |---------|------------|
-| `Base.MagnifyingGlass` | Magnifying Glass — the investigator's tool |
+| `Base.SmokingPipe_Tobacco` | Smoking Pipe with Tobacco |
 | `Base.CigarettePack` | Cigarette Pack |
 | `Base.Lighter` | Lighter |
 | `Base.Whiskey` | Bottle of Whiskey, full (fluid container, 1.0) |
@@ -61,6 +62,8 @@ on Build 42.20 (buildid 24574865).
   `IconsForTexture = JacketLongBlack;JacketLongBrown;JacketGreen`.
 - `Revolver` — `AmmoType = base:bullets_357`, `AmmoBox = Base.Bullets357Box`,
   `MaxAmmo = 6`.
+- `MagnifyingGlass`, `SmokingPipe`, `SmokingPipe_Tobacco` — all present in
+  `generated/items/normal.txt`.
 - No `Speedloader*` item exists in 42.20 scripts.
 
 ## Not defined here (on purpose)
