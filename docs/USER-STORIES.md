@@ -1,7 +1,7 @@
 ---
 title: User Stories
 description: Who wants what from True Detective — open/close list cited as US-NN
-updated: 2026-08-08
+updated: 2026-08-09
 ---
 
 A user story names a person and a want: *As a [role], I want [capability],
@@ -27,9 +27,9 @@ Realized by: UC-02.
 
 ## US-03 — Read the area through the glass
 
-As True Detective, I want to stand still with my magnifying glass and have my
-character whisper where the nearest zombies are — by room indoors, by
-direction outdoors, groups called out as groups — so that patient play is
+As True Detective, I want to investigate on demand with my magnifying glass
+and have my character whisper what it reveals — by room indoors, by
+direction outdoors, groups called out as groups — so that deliberate play is
 rewarded with precise, quiet intel.
 
 Realized by: UC-11, UC-12, UC-13, UC-14.

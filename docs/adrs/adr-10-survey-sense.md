@@ -4,7 +4,7 @@ type: adr
 category: backend
 use_case: changing the survey trigger, immobility window, radius, report cap, grouping, place naming, alert channel, or any detection number; touching SurveySense/StartingGear Lua or survey strings
 created: 2026-08-08
-modified: 2026-08-08
+modified: 2026-08-09
 tags: [adr, backend, project-zomboid, b42, mechanics, survey-sense, true-detective]
 ---
 
@@ -12,9 +12,9 @@ tags: [adr, backend, project-zomboid, b42, mechanics, survey-sense, true-detecti
 
 ## CONTEXT
 
-> Survey Sense is the Detective's only special ability: standing still with
-> a magnifying glass in hand, he reads the surroundings and whispers what
-> he sees. This ADR is the binding law for its trigger, gates, report, and
+> Survey Sense is the Detective's only special ability: with the
+> magnifying glass he investigates on demand and whispers what he finds.
+> This ADR is the binding law for its trigger, gates, report, and
 > feedback. Stat numbers (cost, XP, forage) live as facts in
 > [[DETECTIVE-STATS]]; this ADR governs behavior.
 
@@ -22,14 +22,22 @@ Owner decision 2026-08-08: the door/window interruption mechanics (Door
 Sense, Lead Sense) are retired from `main` and archived on the `legacy`
 branch. Survey Sense replaces them as the profession's single ability.
 
+Owner decision 2026-08-09: the stillness trigger is retired. The survey
+is on-demand only, activated through the magnifying glass; the exact
+activation logic is TBD and binds nothing until the owner decides it.
+Dropping the tick loop is expected to simplify the mechanic heavily
+(KISS). Code written under the retired trigger still lives on `main` —
+per adr-00 rule 11 that code is the defect until replaced.
+
 ## ASSERTIONS
 
-1. **Trigger.** Survey Sense fires after the detective stands on the same
-   square, unmoving, for **300 ticks (~5 real seconds)**. Movement resets
-   the count; so does losing the magnifier gate. Implemented on
-   `Events.OnTick`, throttled to one check every **10 ticks**.
+1. **Trigger.** Survey Sense fires **on demand only**: an explicit player
+   activation tied to the magnifying glass. The exact activation logic —
+   target kinds, channel, timing — is TBD and binds nothing until the
+   owner decides it. No part of the survey runs on a timer or polling
+   loop.
 2. **Tool gate.** The magnifying glass (`Base.MagnifyingGlass`, type
-   `MagnifyingGlass`) must be equipped as **primary hand item**. No glass,
+   `MagnifyingGlass`) must be equipped, in either hand. No glass,
    no survey. The glass is guaranteed starting gear for this reason.
 3. **Profession gate.** Only `truedetective` (`getName()`). Other
    professions never survey.
@@ -53,12 +61,16 @@ branch. Survey Sense replaces them as the profession's single ability.
 10. **Determinism.** Given the same world state the report is always the
     same: no chance rolls anywhere in the trigger, scan, grouping, or
     wording. Distance sort is a pure function of zombie positions.
-11. **Re-arm.** After a survey the stillness count resets; a detective who
-    keeps watching surveys again every 5 seconds, reporting only newly
-    arrived (unmarked) zombies. Silence means nothing new.
+11. **Re-arm.** Every on-demand activation is one full survey; nothing
+    repeats on its own. Whether activation carries a cooldown is part of
+    the TBD trigger logic.
 
 ## FORBIDDEN
 
+- **NEVER** fire the survey from a tick, timer, or any passive polling
+  loop — no `Events.OnTick` scanning, no automatic re-arm (rules 1, 11):
+  the survey answers an explicit on-demand activation, and silence
+  between activations means the player did not ask.
 - **NEVER** reintroduce door/window open hooks or any activation
   interruption on `main` — that mechanic lives on the `legacy` branch.
 - **NEVER** make the report audible or use `player:Say`; `setHaloNote` is
@@ -70,6 +82,15 @@ branch. Survey Sense replaces them as the profession's single ability.
 
 ## REJECTED
 
+- **Stillness trigger (300 ticks unmoving, `Events.OnTick` throttled ×10)**
+  — retired by owner 2026-08-09: passive auto-fire gave the player no
+  agency and forced standing vulnerable to use the ability. Replaced by
+  rule 1 (on-demand only). No reopen condition known.
+- **Magnifier required in the primary hand specifically** — the
+  primary-only gate served the hands-busy stillness channel; on-demand
+  activation accepts either hand (rule 2).
+- **Automatic 5-second re-arm while staying still** — died with the tick
+  trigger; a repeat survey is a repeat activation (rule 11).
 - **Door/window interruption (Door Sense, Lead Sense)** — retired by owner
   2026-08-08; preserved on the `legacy` branch, never on `main`.
 - **`player:Say` for reports** — audible to nearby players in MP and

@@ -1,7 +1,7 @@
 ---
 title: Use Cases
 description: True Detective behavior as Gherkin scenarios — open/close list cited as UC-NN
-updated: 2026-08-08
+updated: 2026-08-09
 ---
 
 A use case is one behavior of the system, and Gherkin is its required
@@ -60,12 +60,12 @@ Retired 2026-08-08, see UC-03. The profession gate itself lives on in UC-11.
 
 Retired 2026-08-08, see UC-03.
 
-## UC-11 — Survey after five still seconds
+## UC-11 — Survey on demand
 
 ```gherkin
-Given a True Detective character with a magnifying glass equipped as primary
+Given a True Detective character with a magnifying glass equipped
 And living unmarked zombies within 15 squares
-When the character stays on the same square for about 5 real seconds
+When the character activates the survey (exact activation TBD — adr-10 rule 1)
 Then the character whispers a report line (setHaloNote) naming places
 And no sound is emitted
 ```
@@ -73,8 +73,8 @@ And no sound is emitted
 ## UC-12 — No glass, no survey
 
 ```gherkin
-Given a True Detective character without a magnifying glass as primary
-When the character stands still for any length of time
+Given a True Detective character without a magnifying glass equipped
+When the character attempts to activate the survey
 Then no survey report is produced
 And a non-Detective character never surveys either
 ```
