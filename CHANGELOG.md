@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased] — Survey Sense replaces Door Sense
+## [42.20-0.3] — 2026-08-08 · tag `v42.20-0.3` — Survey Sense replaces Door Sense
 
 ### Product
 
