@@ -35,8 +35,9 @@ is the always-on git/GitHub floor.
    - **Tag** only for a release the owner names.
 3. **Version identity.** Release tags: **`v42.20-N.M`** (example
    `v42.20-0.1`). `modversion` in `mod.info` matches without the leading
-   `v` when possible (`42.20-0.1`). Workshop item id stays `3383387174`
-   until the owner changes it.
+   `v` when possible (`42.20-0.1`). The B42 / Survey Sense line publishes
+   as a **new** Workshop item (`id=` blank until first upload assigns one);
+   `3383387174` remains the retired B41 page.
 4. **What “deploy” means here.** There is no cloud app deploy. Deploy is:
    - merge to `main` on `kodexArg/TrueDetective`  
    - optional git tag  

@@ -53,7 +53,7 @@ Repo root = product + harness. Live mod SSOT under `Contents/` only.
 TrueDetective/                          # git root · kodexArg/TrueDetective
 ├── AGENTS.md
 ├── README.md
-├── workshop.txt                        # Workshop id 3383387174
+├── workshop.txt                        # Workshop package (id blank until first publish)
 ├── scripts/
 │   └── install-local.sh                # rsync → ~/Zomboid/mods/TrueDetective
 ├── docs/                               # harness law (not game media)

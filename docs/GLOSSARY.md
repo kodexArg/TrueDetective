@@ -35,6 +35,6 @@ below canonize the harness vocabulary and this mod's domain terms.
 | legacy/ | Archive of retired trees — not live product. |
 | version folder | B42 load pin under the mod (`42.0/`, `42.20/`, …) — [[adr-05-project-zomboid-mod-structure]]. |
 | common/ | B42 shared media folder; loads before version folder. |
-| Workshop ID | Steam item number (`3383387174`) — not Mod ID. |
+| Workshop ID | Steam item number (assigned at first publish; B41 legacy item is `3383387174`) — not Mod ID. |
 | Mod ID | `mod.info` `id=` value (`TrueDetective`) — load lists and servers. |
 | resources pack | Fact files under `docs/resources/` supporting heavy ADRs. |

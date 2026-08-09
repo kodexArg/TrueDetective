@@ -41,9 +41,10 @@ like anyone else. The dark of an unlit building doesn't.
 
 ## Install
 
-1. Subscribe on the
-   [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174)
-   — or drop the folder into `Zomboid/mods`.
+1. Subscribe on the Steam Workshop — the B42 item is created at first
+   publish (the old B41 page,
+   [3383387174](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174),
+   stays the legacy edition) — or drop the folder into `Zomboid/mods`.
 2. Main menu → **Mods** → enable **True Detective** → Apply.
 3. New game → pick the **Detective** occupation.
 

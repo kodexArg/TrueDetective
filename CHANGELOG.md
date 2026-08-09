@@ -19,6 +19,13 @@
   revolver and the glass.
 - `modversion=42.20-0.3`.
 
+### Publish prep
+
+- `workshop.txt` rewritten for Survey Sense; `id=` blanked so the first
+  upload creates a **new** Workshop item (`3383387174` stays the retired
+  B41 page). adr-06 / adr-09 / INFRASTRUCTURE / GLOSSARY / upload doc
+  synced to the new-item rule.
+
 ## [42.20-0.2] — 2026-08-08 · tag `v42.20-0.2` — True Detective profession
 
 ### Product
