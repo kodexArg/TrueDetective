@@ -25,12 +25,11 @@ they do for generic combat professions.
 
 Realized by: UC-02.
 
-## US-03 — Read the area through the glass
+## US-03 — Read through the glass
 
-As True Detective, I want to investigate on demand with my magnifying glass
-and have my character whisper what it reveals — by room indoors, by
-direction outdoors, groups called out as groups — so that deliberate play is
-rewarded with precise, quiet intel.
+As True Detective, I want to aim my magnifying glass at a house, hold the
+read for a few seconds, and hear quiet whispers about nearby undead — by room
+or direction, groups as groups — so the glass and a dwelling are the method.
 
 Realized by: UC-11, UC-12, UC-13, UC-14.
 

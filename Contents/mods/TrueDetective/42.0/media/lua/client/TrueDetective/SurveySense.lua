@@ -1,16 +1,33 @@
-local SurveySense = {}
+require "TrueDetective/survey_sense_action"
 
-SurveySense.STILL_TICKS = 300
-SurveySense.CHECK_INTERVAL_TICKS = 10
-SurveySense.RADIUS = 15
-SurveySense.MAX_ZOMBIES = 5
-SurveySense.GROUP_MIN = 3
+TrueDetective_SurveySense = TrueDetective_SurveySense or {}
 
-local tickCount = 0
-local stillTicks = 0
-local lastSquare = nil
+local RADIUS = 30
+local MAX_ZOMBIES = 5
+local GROUP_MIN = 3
+local AIM_RANGE = 40
 
-local function isDetective(player)
+local was_aiming = false
+local busy = false
+local whisper_queue = {}
+
+function TrueDetective_SurveySense.set_busy(value)
+    busy = value and true or false
+end
+
+function TrueDetective_SurveySense.has_magnifier(player)
+    local primary = player:getPrimaryHandItem()
+    if primary and primary:getType() == "MagnifyingGlass" then
+        return true
+    end
+    local secondary = player:getSecondaryHandItem()
+    if secondary and secondary:getType() == "MagnifyingGlass" then
+        return true
+    end
+    return false
+end
+
+local function is_detective(player)
     if not player then
         return false
     end
@@ -25,12 +42,60 @@ local function isDetective(player)
     return profession:getName() == "truedetective"
 end
 
-local function hasMagnifier(player)
-    local item = player:getPrimaryHandItem()
-    return item ~= nil and item:getType() == "MagnifyingGlass"
+local function residential_from_square(square)
+    if not square then
+        return nil
+    end
+    local building = square:getBuilding()
+    if not building then
+        local room = square:getRoom()
+        if room then
+            building = room:getBuilding()
+        end
+    end
+    if building and building:isResidential() then
+        return building
+    end
+    return nil
 end
 
-local function isMarked(zombie)
+function TrueDetective_SurveySense.aim_residential(player)
+    local cell = getCell()
+    if not cell then
+        return nil, nil
+    end
+    local z = player:getZ()
+    local px = player:getX()
+    local py = player:getY()
+    local aim = player:getAimVector(Vector2.new())
+    local ax = aim:getX()
+    local ay = aim:getY()
+    local len2 = ax * ax + ay * ay
+    if len2 < 0.0001 then
+        local fwd = player:getForwardDirection()
+        ax = fwd:getX()
+        ay = fwd:getY()
+        len2 = ax * ax + ay * ay
+    end
+    if len2 < 0.0001 then
+        return nil, nil
+    end
+    local inv = 1 / math.sqrt(len2)
+    ax = ax * inv
+    ay = ay * inv
+    for step = 1, AIM_RANGE do
+        local x = math.floor(px + ax * step)
+        local y = math.floor(py + ay * step)
+        local square = cell:getGridSquare(x, y, z)
+        local building = residential_from_square(square)
+        if building then
+            return building, square
+        end
+    end
+    return nil, nil
+end
+
+local function is_marked(zombie)
     return zombie:getModData().tdSurvey == true
 end
 
@@ -38,7 +103,7 @@ local function mark(zombie)
     zombie:getModData().tdSurvey = true
 end
 
-local function directionKey(dx, dy)
+local function direction_key(dx, dy)
     if dx == 0 and dy == 0 then
         return "here"
     end
@@ -54,7 +119,7 @@ local function directionKey(dx, dy)
     return ns .. ew
 end
 
-local function placeOf(zombie, player)
+local function place_of(zombie, player)
     local square = zombie:getSquare()
     local room = square and square:getRoom()
     if room then
@@ -66,29 +131,28 @@ local function placeOf(zombie, player)
     end
     local dx = zombie:getX() - player:getX()
     local dy = zombie:getY() - player:getY()
-    return getText("UI_td_dir_" .. directionKey(dx, dy)), false
+    return getText("UI_td_dir_" .. direction_key(dx, dy)), false
 end
 
-local function findZombies(player)
+local function find_zombies(player)
     local origin = player:getSquare()
     if not origin then
         return {}
     end
     local px, py, pz = origin:getX(), origin:getY(), origin:getZ()
-    local radius = SurveySense.RADIUS
     local cell = getCell()
     local found = {}
-    for x = px - radius, px + radius do
-        for y = py - radius, py + radius do
+    for x = px - RADIUS, px + RADIUS do
+        for y = py - RADIUS, py + RADIUS do
             local dx, dy = x - px, y - py
-            if dx * dx + dy * dy <= radius * radius then
+            if dx * dx + dy * dy <= RADIUS * RADIUS then
                 local square = cell:getGridSquare(x, y, pz)
                 if square then
                     local moving = square:getMovingObjects()
                     if moving then
                         for i = 0, moving:size() - 1 do
                             local zombie = moving:get(i)
-                            if instanceof(zombie, "IsoZombie") and zombie:isAlive() and not isMarked(zombie) then
+                            if instanceof(zombie, "IsoZombie") and zombie:isAlive() and not is_marked(zombie) then
                                 table.insert(found, { zombie = zombie, dist2 = dx * dx + dy * dy })
                             end
                         end
@@ -103,21 +167,26 @@ local function findZombies(player)
     return found
 end
 
-local function report(player)
-    local found = findZombies(player)
+local function enqueue_whisper(player, text)
+    table.insert(whisper_queue, text)
+end
+
+function TrueDetective_SurveySense.report(player)
+    local found = find_zombies(player)
     if #found == 0 then
+        print("[TrueDetective] SurveySense report, zombies: 0")
         return
     end
     local groups = {}
     local order = {}
-    local taken = math.min(#found, SurveySense.MAX_ZOMBIES)
+    local taken = math.min(#found, MAX_ZOMBIES)
     for i = 1, taken do
         local zombie = found[i].zombie
         mark(zombie)
-        local place, isRoom = placeOf(zombie, player)
-        local key = (isRoom and "room:" or "dir:") .. place
+        local place, is_room = place_of(zombie, player)
+        local key = (is_room and "room:" or "dir:") .. place
         if not groups[key] then
-            groups[key] = { place = place, isRoom = isRoom, count = 0 }
+            groups[key] = { place = place, is_room = is_room, count = 0 }
             table.insert(order, key)
         end
         groups[key].count = groups[key].count + 1
@@ -125,48 +194,64 @@ local function report(player)
     print("[TrueDetective] SurveySense report, zombies: " .. tostring(taken))
     for _, key in ipairs(order) do
         local group = groups[key]
-        if group.count >= SurveySense.GROUP_MIN then
-            local phrase = group.isRoom and "UI_td_survey_group_room" or "UI_td_survey_group_dir"
-            player:setHaloNote(getText(phrase, group.count, group.place))
+        if group.count >= GROUP_MIN then
+            local phrase = group.is_room and "UI_td_survey_group_room" or "UI_td_survey_group_dir"
+            enqueue_whisper(player, getText(phrase, group.count, group.place))
         else
             for _ = 1, group.count do
-                local phrase = group.isRoom and "UI_td_survey_one_room" or "UI_td_survey_one_dir"
-                player:setHaloNote(getText(phrase, group.place))
+                local phrase = group.is_room and "UI_td_survey_one_room" or "UI_td_survey_one_dir"
+                enqueue_whisper(player, getText(phrase, group.place))
             end
         end
     end
 end
 
-local function onTick()
-    tickCount = tickCount + 1
-    if tickCount < SurveySense.CHECK_INTERVAL_TICKS then
+local function drain_whispers()
+    if #whisper_queue == 0 then
         return
     end
-    tickCount = 0
     local player = getSpecificPlayer(0)
     if not player or player:isDead() then
+        whisper_queue = {}
         return
     end
-    if not isDetective(player) then
-        return
+    if player:getHaloTimerCount() <= 0 then
+        player:setHaloNote(table.remove(whisper_queue, 1))
     end
-    local square = player:getSquare()
-    if not square or not hasMagnifier(player) then
-        stillTicks = 0
-        lastSquare = square
-        return
-    end
-    if square ~= lastSquare then
-        stillTicks = 0
-        lastSquare = square
-        return
-    end
-    stillTicks = stillTicks + SurveySense.CHECK_INTERVAL_TICKS
-    if stillTicks < SurveySense.STILL_TICKS then
-        return
-    end
-    stillTicks = 0
-    report(player)
 end
 
-Events.OnTick.Add(onTick)
+local function try_start_survey(player)
+    if busy then
+        return
+    end
+    if not is_detective(player) then
+        return
+    end
+    if not TrueDetective_SurveySense.has_magnifier(player) then
+        return
+    end
+    local building, square = TrueDetective_SurveySense.aim_residential(player)
+    if not building or not square then
+        return
+    end
+    local action = survey_sense_action:new(player, square:getX(), square:getY())
+    ISTimedActionQueue.add(action)
+end
+
+local function on_player_update(player)
+    if not player or player:isDead() then
+        was_aiming = false
+        return
+    end
+    if player ~= getSpecificPlayer(0) then
+        return
+    end
+    local aiming = player:isAiming()
+    if aiming and not was_aiming then
+        try_start_survey(player)
+    end
+    was_aiming = aiming
+    drain_whispers()
+end
+
+Events.OnPlayerUpdate.Add(on_player_update)

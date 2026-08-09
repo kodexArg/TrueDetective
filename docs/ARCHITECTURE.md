@@ -8,6 +8,7 @@ updated: 2026-08-09
 
 - Structure: [[adr-05-project-zomboid-mod-structure]] + `docs/resources/pz-mod-structure/`
 - Steam / paths: [[adr-06-steam-configurations]] + `docs/resources/steam-configurations/`
+- Detection: [[adr-10-survey-sense]]
 
 ## Live mod tree (project standard)
 
@@ -15,16 +16,16 @@ updated: 2026-08-09
 Contents/mods/TrueDetective/
 ├── mod.info                 # id=TrueDetective
 ├── icon.png / poster.png
-├── common/                  # B42 shared assets (required presence; mod.info + art)
+├── common/                  # B42 shared assets
 └── 42.0/                    # primary version root for Build 42.20
     ├── mod.info
     ├── poster.png / icon.png
     └── media/
-        ├── registries.lua   # CharacterProfession.register
+        ├── registries.lua
         ├── lua/
         │   ├── client/TrueDetective/
         │   ├── shared/TrueDetective/
-        │   └── server/…     # if needed
+        │   └── server/…
         ├── scripts/characters/
         └── textures/
 ```
@@ -39,17 +40,17 @@ Version folder **`42.0`** is this project’s pin for 42.20 stable.
 
 Install: `scripts/install-local.sh` → real directory (not symlink).
 
-## Systems (product)
+## Systems
 
 | System | Responsibility |
 |--------|----------------|
-| Profession | Register True Detective (`CharacterProfession`) |
+| Profession | Register Detective (`CharacterProfession`) |
 | Forage | Urban vision / junk-trash-ammo affinity |
-| Detection | Survey Sense: on-demand activation tied to the magnifying glass (exact logic TBD) → whispered report; never tick/timer-driven (law: [[adr-10-survey-sense]]) |
-| Phrases | Deterministic survey lines (room / direction, singles + groups) |
+| Detection | Survey Sense — glass + aim dwelling + 5s channel ([[adr-10-survey-sense]]) |
+| Phrases | Deterministic survey lines (room / direction) |
 | Clothing | Creation-time occupation clothing |
 
 ## Current surface
 
-Profession registration, creation outfit, and starting gear ship. Loadout
-detail: [[OUTFIT]]. See [[MOD-API]]. Archive: `legacy/`.
+See [[MOD-API]] and [[OUTFIT]]. Code plan for ability activation:
+[[business-logic-for-detective-ability]].

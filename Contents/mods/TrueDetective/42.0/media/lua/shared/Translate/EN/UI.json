@@ -1,6 +1,6 @@
 {
     "UI_prof_truedetective": "Detective",
-    "UI_profdesc_truedetective": "A hard-boiled urban investigator. Walks into the apocalypse wearing a fedora and a leather coat, with a loaded revolver and a magnifying glass. Hold still, glass in hand, and he will read the room for you.",
+    "UI_profdesc_truedetective": "A hard-boiled urban investigator. Walks into the apocalypse wearing a fedora and a leather coat, with a loaded revolver and a magnifying glass. Hold the glass — that is how he reads the room.",
     "UI_td_survey_one_room": "A zombie in the %1.",
     "UI_td_survey_group_room": "A group of %1 zombies in the %2.",
     "UI_td_survey_one_dir": "A zombie, %1.",

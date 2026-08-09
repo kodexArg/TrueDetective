@@ -6,14 +6,15 @@ Naming law: **True Detective** is the *mod* name. The playable profession is
 just **Detective**. Descriptions say "playable detective profession" — never
 "True Detective profession".
 
-The Detective's only ability is **Survey Sense** (magnifying glass, 5s
-immobile, whispered zombie report). Door/window senses are retired to the
-`legacy` branch — never port them back to `main`.
+The Detective's only special ability is **Survey Sense**: hold a
+**magnifying glass**, **aim at a residential building**, complete a **~5 s
+channel**, then whisper nearby zombies (radius 30). Law: [[adr-10-survey-sense]].
 
 ## Read first — always, before any work
 
 1. `docs/constitution/PRD.md`
 2. **Every** ADR in `docs/adrs/` (`adr-00` … `adr-10`)
+3. `docs/business-logic-for-detective-ability.md` when touching Survey Sense
 
 Where code and ADR disagree, **ADR wins**.
 

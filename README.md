@@ -21,8 +21,8 @@ cigarettes, a lighter, a bottle of whiskey. *"Sometimes is all a man gets."*
 
 ## Survey Sense
 
-Give him the glass and five quiet seconds. He stands still, he studies the
-street, the walls, the rooms beyond them — and he whispers what he finds:
+The glass is the method. Hold it, work the scene, and he whispers what he
+finds:
 
 > *"A zombie in the kitchen."*
 > *"A group of 4 zombies in the living room."*
@@ -46,13 +46,6 @@ like anyone else. The dark of an unlit building doesn't.
    — or drop the folder into `Zomboid/mods`.
 2. Main menu → **Mods** → enable **True Detective** → Apply.
 3. New game → pick the **Detective** occupation.
-
-## Legacy
-
-The retired door/window senses — the Detective interrupting an open to warn
-about the room beyond — live on the
-[`legacy` branch](https://github.com/kodexArg/TrueDetective/tree/legacy).
-Archive, not law.
 
 ## Author
 
