@@ -1,7 +1,7 @@
 ---
 title: Outfit
 description: True Detective starting loadout — fedora, leather long coat, revolver; item ids, config files, and why
-updated: 2026-08-08
+updated: 2026-08-09
 ---
 
 # Outfit — True Detective starting loadout
@@ -43,7 +43,7 @@ Guaranteed:
 | Item id | What it is |
 |---------|------------|
 | `Base.SmokingPipe_Tobacco` | Smoking Pipe with Tobacco |
-| `Base.CigarettePack` | Cigarette Pack |
+| `Base.TobaccoLoose` | Loose Tobacco — refills the pipe via the vanilla `FillPipe` recipe |
 | `Base.Lighter` | Lighter |
 | `Base.Whiskey` | Bottle of Whiskey, full (fluid container, 1.0) |
 
@@ -64,6 +64,9 @@ on Build 42.20 (buildid 24574865).
   `MaxAmmo = 6`.
 - `MagnifyingGlass`, `SmokingPipe`, `SmokingPipe_Tobacco` — all present in
   `generated/items/normal.txt`.
+- `TobaccoLoose` — drainable (`UseDelta = 0.02`, ~50 uses), tagged
+  `base:tobacco`; vanilla `FillPipe` recipe consumes 3 uses + an empty
+  `SmokingPipe` → one `SmokingPipe_Tobacco`.
 - No `Speedloader*` item exists in 42.20 scripts.
 
 ## Not defined here (on purpose)
