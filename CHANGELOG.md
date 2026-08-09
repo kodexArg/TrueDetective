@@ -21,10 +21,10 @@
 
 ### Publish prep
 
-- `workshop.txt` rewritten for Survey Sense; `id=` blanked so the first
-  upload creates a **new** Workshop item (`3383387174` stays the retired
-  B41 page). adr-06 / adr-09 / INFRASTRUCTURE / GLOSSARY / upload doc
-  synced to the new-item rule.
+- `workshop.txt` rewritten for Survey Sense. Owner decision: the B42 line
+  **updates the original Workshop item `3383387174` in place** — one page,
+  one subscriber base; the B41 build is superseded. adr-06 / adr-09 /
+  INFRASTRUCTURE / GLOSSARY / upload doc synced to the in-place rule.
 
 ## [42.20-0.2] — 2026-08-08 · tag `v42.20-0.2` — True Detective profession
 

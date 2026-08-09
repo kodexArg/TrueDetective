@@ -14,12 +14,12 @@ updated: 2026-08-08
 | Client (native Linux) | `~/.local/share/Steam/steamapps/common/ProjectZomboid` |
 | User data | `~/Zomboid/` |
 | Local mod install | `~/Zomboid/mods/TrueDetective` (real directory via rsync; not a symlink) — **required path** [[adr-06-steam-configurations]] |
-| Workshop ID / Mod ID | assigned at first publish (B41 legacy: `3383387174`) / `TrueDetective` |
+| Workshop ID / Mod ID | `3383387174` / `TrueDetective` |
 | Structure law | [[adr-05-project-zomboid-mod-structure]] |
 | Console / logs | `~/Zomboid/console.txt`, `~/Zomboid/Logs/` |
 | Steam console capture | `~/Documents/System/logs/steam/` (`/kdx-this-computer-steam`, `/kdx-log`) |
 | Host PZ skill | `~/Skills/steam-project-zomboid` |
-| Workshop id | assigned at first publish (`id=` blank until then) |
+| Workshop id | `3383387174` |
 
 ## Install
 

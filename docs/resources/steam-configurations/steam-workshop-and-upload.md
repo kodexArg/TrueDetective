@@ -14,7 +14,7 @@ File lives at Workshop package root (this repo: repository root
 | Key | Example / default | Meaning |
 |---|---|---|
 | `version` | `1` | Format version |
-| `id` | empty (new item) | Steam **Workshop item id** (empty until first publish) |
+| `id` | `3383387174` | Steam **Workshop item id** (empty until first publish) |
 | `title` | `True Detective` | Workshop title |
 | `description` | multi-line `description=` rows | Workshop body (BBCode-friendly) |
 | `tags` | `Build 42;Misc` | Semicolon-separated tags |
@@ -28,14 +28,13 @@ File lives at Workshop package root (this repo: repository root
 
 ## True Detective package (this project)
 
-The B42 / Survey Sense line publishes as a **new Workshop item**: `id=`
-stays empty in `workshop.txt` until the first upload assigns one.
-`3383387174` is the retired B41 *Detective Profession* page — legacy
-edition, never overwritten by this line.
+The B42 / Survey Sense line publishes as an **update of the original
+Workshop item `3383387174`** (owner decision 2026-08-08): one page, one
+subscriber base. The B41 build is superseded on that page.
 
 ```text
 version=1
-id=
+id=3383387174
 title=True Detective
 description=[h1]True Detective[/h1]
 description=Build 42.20 profession mod — playable Detective occupation.
@@ -60,7 +59,7 @@ expectation).
 
 | Name | Example | Used for |
 |---|---|---|
-| **Workshop ID** | assigned at first publish | Steam URL, `workshop.txt` `id=`, server `WorkshopItems=` |
+| **Workshop ID** | `3383387174` | Steam URL, `workshop.txt` `id=`, server `WorkshopItems=` |
 | **Mod ID** | `TrueDetective` | `mod.info` `id=`, `Mods=`, `default.txt` `mod =` |
 
 Do not swap them.
@@ -70,7 +69,7 @@ Do not swap them.
 When hosting with Workshop mods (dedicated or listen):
 
 ```text
-WorkshopItems=<id assigned at first publish>
+WorkshopItems=3383387174
 Mods=TrueDetective
 ```
 

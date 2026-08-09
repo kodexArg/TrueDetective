@@ -33,9 +33,9 @@ and language policy live under
    `Contents/mods/TrueDetective/`, installed by `scripts/install-local.sh`.
    The enable list `~/Zomboid/mods/default.txt` must include
    `mod = TrueDetective` (Mod ID, not Workshop id).
-3. **Two IDs, English names.** **Workshop ID** assigned by Steam at first
-   publish (`workshop.txt` `id=` stays blank until then; `3383387174` is
-   the retired B41 item). **Mod ID**
+3. **Two IDs, English names.** **Workshop ID** `3383387174` (Steam item /
+   `workshop.txt` `id=` / server `WorkshopItems=`); the B42 line updates
+   that original item in place (owner decision 2026-08-08). **Mod ID**
    `TrueDetective` (`mod.info` `id=` / `Mods=` / `default.txt`). Never
    swap them.
 4. **Target branch.** Product targets the **public** Steam branch —
