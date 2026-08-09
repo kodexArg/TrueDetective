@@ -16,6 +16,7 @@ description=[/list]
 description=
 description=Mod ID: TrueDetective
 description=Source: https://github.com/kodexArg/TrueDetective
+description=Homepage: https://kodexarg.com
 description=Issues and pull requests welcome.
 description=License: MIT
 tags=Build 42;Misc

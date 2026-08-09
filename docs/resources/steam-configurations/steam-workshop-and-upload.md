@@ -20,6 +20,12 @@ File lives at Workshop package root (this repo: repository root
 | `tags` | `Build 42;Misc` | Semicolon-separated tags |
 | `visibility` | `public` | Also: `friends`, `private`, `unlisted` (Steam norms) |
 
+> B42.20 fact (verified in game classes 2026-08-08): the mod manager's
+> **Homepage** row is fed from Steam Workshop metadata, not from mod.info —
+> the `mod.info` parser (`ZomboidFileSystem`) has no `url` key. Local/staged
+> packages always show a blank Homepage. Put homepage links in the
+> `workshop.txt` description instead.
+
 ## True Detective package (this project)
 
 The B42 / Survey Sense line publishes as a **new Workshop item**: `id=`
