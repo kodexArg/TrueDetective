@@ -1,7 +1,7 @@
 ---
 title: User Stories
 description: Who wants what from True Detective — open/close list cited as US-NN
-updated: 2026-08-09
+updated: 2026-08-17
 ---
 
 A user story names a person and a want: *As a [role], I want [capability],
@@ -25,13 +25,21 @@ they do for generic combat professions.
 
 Realized by: UC-02.
 
-## US-03 — Read through the glass
+## US-03 — Investigate with the glass
 
-As True Detective, I want to aim my magnifying glass at a house, hold the
-read for a few seconds, and hear quiet whispers about nearby undead — by room
-or direction, groups as groups — so the glass and a dwelling are the method.
+As True Detective, I want to hold my magnifying glass for better search and
+right-click Investigate on a quiet zombie or a corpse so I hear one
+whispered mate or pack-origin lead — not aim at houses and channel a scan,
+and not probe doors.
 
-Realized by: UC-11, UC-12, UC-13, UC-14.
+Realized by: UC-11, UC-12, UC-14, UC-15, UC-16, UC-18, UC-19.
+
+## US-05 — Find a clue while walking
+
+As True Detective, I want a chance to read footprints while I walk with the
+glass, so that the street itself can give me a direction without another button.
+
+Realized by: UC-17.
 
 ## US-04 — Enable the mod on my host
 

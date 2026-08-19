@@ -1,11 +1,15 @@
 local GUARANTEED_GEAR = {
-    "Base.Bullets357Box",
     "Base.MagnifyingGlass",
+    "Base.Bullets357Box",
+}
+
+local OPTIONAL_PIPE_KIT = {
+    "Base.SmokingPipe",
+    "Base.TobaccoLoose",
+    "Base.Lighter",
 }
 
 local OPTIONAL_GEAR = {
-    "Base.SmokingPipe_Tobacco",
-    "Base.CigarettePack",
     "Base.Lighter",
     "Base.Whiskey",
 }
@@ -16,6 +20,12 @@ local function giveLoadedRevolver(inventory)
     local revolver = inventory:AddItem("Base.Revolver")
     if instanceof(revolver, "HandWeapon") then
         revolver:setCurrentAmmoCount(revolver:getMaxAmmo())
+    end
+end
+
+local function giveOptionalKit(inventory, kit)
+    for _, itemType in ipairs(kit) do
+        inventory:AddItem(itemType)
     end
 end
 
@@ -35,6 +45,9 @@ local function giveStartingGear(player)
     giveLoadedRevolver(inventory)
     for _, itemType in ipairs(GUARANTEED_GEAR) do
         inventory:AddItem(itemType)
+    end
+    if ZombRand(100) < OPTIONAL_CHANCE then
+        giveOptionalKit(inventory, OPTIONAL_PIPE_KIT)
     end
     for _, itemType in ipairs(OPTIONAL_GEAR) do
         if ZombRand(100) < OPTIONAL_CHANCE then

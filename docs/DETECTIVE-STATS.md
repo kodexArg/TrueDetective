@@ -1,7 +1,7 @@
 ---
 title: Detective Stats
 description: True Detective stat decisions, one fact per section — value, justification, vanilla reference
-updated: 2026-08-08
+updated: 2026-08-18
 ---
 
 # Detective Stats
@@ -68,6 +68,33 @@ vanilla professions that anchor it. Sections marked **shipped** are live in
 
 - Fisherman: weatherEffect 40 (outdoor ceiling)
 - Most urban professions: weatherEffect 0–5
+
+## Glass search ×1.5 — shipped
+
+> With the magnifying glass in either hand, the Detective's occupation
+> forage package multiplies by **1.5**: `visionBonus` 1.75 → **2.625**,
+> each urban specialisation 10 → **15**. Drop the glass and the base
+> numbers return. This is SearchBoost, not aim-channel Survey.
+
+### Reference
+
+- Base occupation package: visionBonus 1.75, specialisations 10
+- Hook: `forageSystem.skillDefs.occupation.truedetective` via `SearchBoost.lua`
+
+## Walk-up clue — 4% search / 1% walk · 90 s cooldown — shipping
+
+> The Detective does not press a second power. He walks with the glass and
+> sometimes the ground gives him a trail. Each **new square** rolls once.
+> Search mode is the eye on the job: **4%**. Ordinary walk: **1%**. A
+> spoken clue starts a **90 second** real-time cooldown. A miss says
+> nothing. Sprint, a vehicle, no glass, or a marked pack nearby yield no
+> line. Radius is the same **30** as Investigate.
+
+### Reference
+
+- Investigate partner radius: 30 (same scan)
+- Door 50% probe (retired 2026-08-17): replaced by this per-square chance
+- Hook: `walk_clue.lua` on `OnPlayerUpdate`, square-change gate
 
 ## Urban specialisations — 10 across the board — shipped
 

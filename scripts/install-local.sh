@@ -19,6 +19,24 @@ fi
 mkdir -p "$DEST"
 rsync -a --delete "$SRC/" "$DEST/"
 
+# Same Mod ID from multiple roots dual-loads; old trees win if left stale.
+# 1) Steam workshop content cache (subscribed item 3383387174)
+WS_DEST="${HOME}/.local/share/Steam/steamapps/workshop/content/108600/3383387174/mods/TrueDetective"
+if [[ -d "$(dirname "$WS_DEST")" ]]; then
+  mkdir -p "$WS_DEST"
+  rsync -a --delete "$SRC/" "$WS_DEST/"
+  echo "Also synced Steam workshop cache: $WS_DEST"
+fi
+# 2) In-game Workshop upload package (Tools → Workshop → TrueDetective)
+#    Path: ~/Zomboid/Workshop/TrueDetective/Contents/mods/TrueDetective
+#    This was still shipping SurveySense and was what the client ran.
+PKG_DEST="${HOME}/Zomboid/Workshop/TrueDetective/Contents/mods/TrueDetective"
+if [[ -d "${HOME}/Zomboid/Workshop/TrueDetective" ]]; then
+  mkdir -p "$PKG_DEST"
+  rsync -a --delete "$SRC/" "$PKG_DEST/"
+  echo "Also synced Zomboid Workshop package: $PKG_DEST"
+fi
+
 # enable in default modlist (ActiveModsFile format) if not already listed
 if [[ ! -f "$DEFAULT" ]] || ! grep -q 'mod = TrueDetective' "$DEFAULT" 2>/dev/null; then
   cat >"$DEFAULT" <<'EOF'

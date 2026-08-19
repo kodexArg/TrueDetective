@@ -7,8 +7,9 @@ just **Detective**. Descriptions say "playable detective profession" — never
 "True Detective profession".
 
 The Detective's only special ability is **Survey Sense**: hold a
-**magnifying glass**, **aim at a residential building**, complete a **~5 s
-channel**, then whisper nearby zombies (radius 30). Law: [[adr-10-survey-sense]].
+**magnifying glass** for SearchBoost ×1.5, right-click **Investigate** on
+a live or dead zombie for a mate/pack whisper, and while walking with the
+glass sometimes read footprints. Law: [[adr-10-survey-sense]].
 
 ## Read first — always, before any work
 

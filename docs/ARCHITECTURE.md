@@ -1,7 +1,7 @@
 ---
 title: Architecture
 description: True Detective B42.20 mod layout — Contents, 42.0, common; structure law in adr-05
-updated: 2026-08-09
+updated: 2026-08-17
 ---
 
 ## Binding law
@@ -46,8 +46,8 @@ Install: `scripts/install-local.sh` → real directory (not symlink).
 |--------|----------------|
 | Profession | Register Detective (`CharacterProfession`) |
 | Forage | Urban vision / junk-trash-ammo affinity |
-| Detection | Survey Sense — glass + aim dwelling + 5s channel ([[adr-10-survey-sense]]) |
-| Phrases | Deterministic survey lines (room / direction) |
+| Detection | Survey Sense — SearchBoost + Investigate + walk-up clues ([[adr-10-survey-sense]]) |
+| Phrases | Seeded Investigate lines (mate / pack / walk / alone) |
 | Clothing | Creation-time occupation clothing |
 
 ## Current surface

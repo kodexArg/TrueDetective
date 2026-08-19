@@ -35,16 +35,15 @@ Guaranteed:
 | Item id | Why |
 |---------|-----|
 | `Base.Revolver` | The revolver. Never a pistol. .357, spawned **loaded 6/6** (`setCurrentAmmoCount(getMaxAmmo())`). |
-| `Base.Bullets357Box` | The spare "magazine". Build 42.20 has **no speedloader item**; a box of matching .357 rounds is the closest real thing. |
-| `Base.MagnifyingGlass` | The investigator's tool — guaranteed because it gates Survey Sense ([[adr-10-survey-sense]]). |
+| `Base.Bullets357Box` | Full box of spare .357 (open for loose rounds in play). |
+| `Base.MagnifyingGlass` | Gates **SearchBoost** (search ×1.5) and **Investigate** ([[adr-10-survey-sense]]). |
 
 75% chance each (owner call — "that's how our detective is"):
 
-| Item id | What it is |
-|---------|------------|
-| `Base.SmokingPipe_Tobacco` | Smoking Pipe with Tobacco |
-| `Base.CigarettePack` | Cigarette Pack |
-| `Base.Lighter` | Lighter |
+| Item id / kit | What it is |
+|---------------|------------|
+| **Pipe kit** (one roll) | `Base.SmokingPipe` + `Base.TobaccoLoose` + `Base.Lighter` — no cigarette pack. |
+| `Base.Lighter` | Lighter (also in the pipe kit; second roll possible) |
 | `Base.Whiskey` | Bottle of Whiskey, full (fluid container, 1.0) |
 
 - Config: `Contents/mods/TrueDetective/42.0/media/lua/client/TrueDetective/StartingGear.lua`
@@ -62,8 +61,10 @@ on Build 42.20 (buildid 24574865).
   `IconsForTexture = JacketLongBlack;JacketLongBrown;JacketGreen`.
 - `Revolver` — `AmmoType = base:bullets_357`, `AmmoBox = Base.Bullets357Box`,
   `MaxAmmo = 6`.
-- `MagnifyingGlass`, `SmokingPipe`, `SmokingPipe_Tobacco` — all present in
-  `generated/items/normal.txt`.
+- `Bullets357` — loose round; script `count = 5` is default loot stack; we
+  override with `setCount(36)`. Box open recipe packs **50** loose rounds.
+- `SmokingPipe`, `TobaccoLoose` (`tags = base:tobacco`), `Lighter` — fill via
+  craftRecipe `FillPipe` in `recipes_tobacco.txt` (3× tobacco + empty pipe).
 - No `Speedloader*` item exists in 42.20 scripts.
 
 ## Not defined here (on purpose)

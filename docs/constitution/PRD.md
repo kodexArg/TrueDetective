@@ -1,12 +1,12 @@
 ---
 title: Product Requirements Document
 description: True Detective — B42.20 profession mod objective, who it serves, and the product horizon
-updated: 2026-08-09
+updated: 2026-08-17
 ---
 
-**True Detective** is a **Project Zomboid Build 42.20** **profession mod**. It adds one fully integrated, playable occupation: **the Detective** (display name **Detective**). It answers the want for a careful *urban* investigator fantasy — stronger indoor/urban forage vision than Veteran, high affinity for junk, trash, and ammunition, and one special ability: **Survey Sense** — hold a **magnifying glass**, aim at a **dwelling**, channel the read, whisper what is near.
+**True Detective** is a **Project Zomboid Build 42.20** **profession mod**. It adds one fully integrated, playable occupation: **the Detective** (display name **Detective**). It answers the want for a careful *urban* investigator fantasy — stronger indoor/urban forage vision than Veteran, high affinity for junk, trash, and ammunition, and one special ability brand **Survey Sense**: hold a **magnifying glass** for **×1.5 search**, **right-click Investigate** on a quiet zombie or a corpse to whisper a mate or pack-origin lead, and sometimes **read footprints** while walking.
 
-This is the B42 rebuild of the private B41 *Detective Profession* (Workshop [3383387174](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174)). Registration on B42.20 uses **`CharacterProfession.register`** plus script definition under `Contents/mods/TrueDetective/42.0/` — **never** B41 `ProfessionFactory`. The occupation is distinct from third-party packs (for example SOTO’s simpler `soto:detective`); **the magnifier survey with whispered lines is unique to this mod**.
+This is the B42 rebuild of the private B41 *Detective Profession* (Workshop [3383387174](https://steamcommunity.com/sharedfiles/filedetails/?id=3383387174)). Registration on B42.20 uses **`CharacterProfession.register`** plus script definition under `Contents/mods/TrueDetective/42.0/` — **never** B41 `ProfessionFactory`. The occupation is distinct from third-party packs (for example SOTO’s simpler `soto:detective`); **Investigate leads with whispered lines are unique to this mod**.
 
 Live product root: `Contents/mods/TrueDetective/`. Prior trees under `legacy/` are archive only — not the product.
 
@@ -20,7 +20,7 @@ Narratives: [[USER-STORIES]]. Behavior: [[USE-CASES]].
 
 ## The horizon
 
-**Done for the profession product:** True Detective registers on B42.20 via the CharacterProfession registry (`truedetective:truedetective`); forage occupation bonuses and XP match the binding mechanics ADR; Survey Sense runs for Detective characters only while the magnifying glass is held; clothing spawn definitions present; installable from `~/Zomboid/mods` (via `scripts/install-local.sh`) or Workshop layout with load folder **`42.0/`**.
+**Done for the profession product:** True Detective registers on B42.20 via the CharacterProfession registry (`truedetective:truedetective`); forage occupation bonuses and XP match the binding mechanics ADR; Survey Sense is glass SearchBoost + Investigate + walk-up clues (not aim-channel); clothing spawn definitions present; installable from `~/Zomboid/mods` (via `scripts/install-local.sh`) or Workshop layout with load folder **`42.0/`**.
 
 **Beyond:** Workshop publish for B42, multiplayer edge polish, phrase and localisation expansion, and any balance revisits only through ADR amend — never by re-activating `legacy/` as live code.
 

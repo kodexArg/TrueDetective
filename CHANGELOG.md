@@ -1,5 +1,35 @@
 # Changelog
 
+## [unreleased] — walk-up clues; doors off
+
+### Product
+
+- **Walk-up clue:** while walking with the glass, each new square may
+  whisper a **footprint** line (4% search / 1% walk, 90 s cooldown,
+  silent miss). Mate/pack stays on Investigate only.
+- **Investigate** is only on a **live unalerted zombie** or a **dead
+  zombie / corpse**. Mate and pack-origin lines. Doors are not a target.
+- Door probe deleted. Law: `adr-10-survey-sense` (2026-08-17).
+
+## [42.20-0.11] — 2026-08-10 · tag `v42.20-0.11` — Investigate redesign
+
+### Product
+
+- **Survey Sense redesign:** aim/channel path **deleted**
+  (`SurveySense.lua`, `survey_sense_action.lua` removed). Glass gives
+  **SearchBoost** (forage occupation stats ×1.5). Right-click
+  **Investigate** on unalerted zombie / corpse / building door (self TBD
+  stub). One whispered lead; door detection 100%/50% by search mode.
+  Law: `adr-10-survey-sense` rewrite; assertion-01-investigate.
+- Glass required to **succeed** Investigate (primary **or** secondary hand);
+  menu still appears without glass (need-equipped lines, d6).
+- Starting gear: loaded revolver + **full `Bullets357Box`**; glass always;
+  optional pipe kit (pipe + tobacco + lighter), lighter, whiskey. No cigarettes.
+- Investigate on self: menu when RMB on the Detective’s own tile.
+- `install-local.sh` syncs `~/Zomboid/mods`, Steam workshop cache, and
+  `~/Zomboid/Workshop/TrueDetective` package (avoids stale dual-load).
+- `modversion=42.20-0.11`.
+
 ## [42.20-0.3] — 2026-08-08 · tag `v42.20-0.3` — Survey Sense replaces Door Sense
 
 ### Product

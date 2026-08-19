@@ -1,7 +1,7 @@
 ---
 title: Use Cases
 description: True Detective behavior as Gherkin scenarios — open/close list cited as UC-NN
-updated: 2026-08-09
+updated: 2026-08-17
 ---
 
 A use case is one behavior of the system, and Gherkin is its required
@@ -51,43 +51,81 @@ Then the mod loads without requiring ProfessionFactory
 And the load root used is 42.0
 ```
 
-## UC-11 — Survey a dwelling through the glass
+## UC-11 — Investigate an unalerted zombie
 
 ```gherkin
 Given a True Detective character holding a magnifying glass
-And the character aims at a residential building
-And living unmarked zombies within 30 squares
-When the character completes the Survey Sense channel (~5 seconds)
-Then the character whispers report lines (setHaloNote) naming places
-And no sound is emitted
-And the outcome is deterministic (no chance rolls)
+And an unalerted living zombie under the cursor
+When the player chooses Investigate
+Then the character says one mate or pack-origin lead about the closest other living partner within 30
+Or an alone-pool line if no partner
+And that partner is marked tdLead and never receives a second lead
 ```
 
-## UC-12 — No glass or no dwelling, no survey
+## UC-12 — No glass, no Investigate
 
 ```gherkin
 Given a True Detective character without a magnifying glass
-Or not aiming at a residential building
-When the character would use Survey Sense
-Then no survey channel starts and no report is produced
-And a non-Detective character never surveys either
+When the player opens the world context menu on a valid target
+Then Investigate is not offered
+And a non-Detective character never sees Investigate
 ```
 
-## UC-13 — Closest five, once per zombie
+## UC-13 — Investigate a building door — closed
+
+Closed 2026-08-17. Doors are not Investigate targets. Replaced by UC-17.
+
+## UC-17 — Walk-up clue while moving
 
 ```gherkin
-Given a True Detective character completes a survey channel
-When more than five living unmarked zombies are in radius
-Then at most the five closest are reported
-And each reported zombie is marked and never reported again
-And dead zombies are never reported in the area scan
+Given a True Detective holding a magnifying glass
+And the character walks onto a new square
+When the per-square chance hits and an unmarked living zombie is within 30
+Then the character says one footprint line (direction or the room the prints enter) about that partner
+And the partner is marked tdLead
+And a failed roll or empty radius produces no speech
 ```
 
-## UC-14 — Groups named by place
+## UC-18 — Investigate a dead zombie
 
 ```gherkin
-Given a survey reports three or more zombies in the same room
-Then one group line names the count and the room
-And a zombie outdoors is named by compass direction instead
-And a room without a translation falls back to "building"
+Given a True Detective character holding a magnifying glass
+And a dead zombie or corpse under the cursor
+When the player chooses Investigate
+Then the character says one mate or pack-origin lead about the closest living partner within 30
+Or an alone-pool line if no partner
+And that partner is marked tdLead
+```
+
+## UC-19 — Doors are not Investigate targets
+
+```gherkin
+Given a True Detective character and a building door under the cursor
+When the player opens the world context menu
+Then Investigate is not offered on that door
+```
+
+## UC-14 — Glass SearchBoost
+
+```gherkin
+Given a True Detective holding a magnifying glass
+When forage occupation bonuses resolve
+Then visionBonus and specialisations are base times 1.5
+And unequipping the glass restores base values
+```
+
+## UC-15 — Aim does not activate Survey Sense
+
+```gherkin
+Given a True Detective holding a magnifying glass
+When the character aims at a residential building
+Then no channel starts and no area survey report is produced
+```
+
+## UC-16 — Self Investigate stub
+
+```gherkin
+Given a True Detective holding a magnifying glass
+When the player chooses Investigate on self
+Then only the stub path runs (TBD design)
 ```
